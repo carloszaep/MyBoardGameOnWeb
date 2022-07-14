@@ -7,12 +7,13 @@
   position: relative;
   display: inline-block;
 }
-
+/* players */
 .player {
   position: absolute;
   z-index: 5;
 }
 
+/* buttoms */
 .btnRollDice {
   position: absolute;
   z-index: 5;
@@ -20,6 +21,21 @@
   top: 760px;
 }
 
+.btnUpgradeIndustry {
+  position: absolute;
+  z-index: 5;
+  right: 670px;
+  top: 760px;
+}
+
+.btnBuy {
+  position: absolute;
+  z-index: 15;
+  right: 670px;
+  top: 760px;
+}
+
+/* dices */
 .diceImg {
   position: absolute;
   z-index: 5;
@@ -46,6 +62,13 @@
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
   z-index: 10;
+}
+/* on show */
+.onshow {
+  position: absolute;
+  z-index: 15;
+  right: 500px;
+  top: 0;
 }
 
 /* hiden class */
