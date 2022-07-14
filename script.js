@@ -127,7 +127,7 @@ const onShow = document.querySelector(".onshow");
 // overlay
 const overlay = document.querySelector(".overlay");
 
-//*******game logic variables*********
+//*******game logic gloval variables*********
 // knowing what player is active by number
 let activePlayer = 1; // i need to make a function so the 1 chnage depending of player starTurn and finalTurns
 
@@ -146,7 +146,8 @@ if (numberOfPlayers === 2) {
   players.push(player1);
   players.push(player2);
 }
-
+// property on play // had to make this list to know what property is going to (buy,upgrade or (es= piratiar))
+let propertyPlay = [];
 //********** functions ***********
 
 // when moving
@@ -175,6 +176,8 @@ const switchStarTurn = function () {
   if (players[activePlayer].startTurn) {
     players[activePlayer].startTurn = false;
     players[activePlayer].finalTurn = true;
+    BtnRollDice.classList.add("hidden");
+    btnUpgradeIndustry.classList.add("hidden");
   }
 };
 // chnage final turn to next player star turn and change active player
@@ -191,8 +194,32 @@ const switchActivePlayer = function () {
     if (activePlayer === numberOfPlayers + 1) {
       activePlayer = 1;
     }
+    BtnRollDice.classList.remove("hidden");
+    btnUpgradeIndustry.classList.remove("hidden");
   }
 };
+// paying and getting property
+function paying(whoGet, value, times) {
+  players[activePlayer].money -= value * times;
+  whoGet.money += value * times;
+}
+
+function collecting(whoPay, value, times) {
+  whoPay.money -= value * times;
+  players[activePlayer].money += value * times;
+}
+
+function getProp(whoGive) {
+  players[activePlayer].propertyOn.push(propertyPlay[0]);
+  let removeIndex = whoGive.propertyOn.indexOf(propertyPlay[0]);
+  whoGive.propertyOn.splice(removeIndex, 1);
+}
+
+function giveProp(whoGet) {
+  whoGet.propertyOn.push(propertyPlay[0]);
+  let removeIndex = players[activePlayer].propertyOn.indexOf(propertyPlay[0]);
+  players[activePlayer].propertyOn.splice(removeIndex, 1);
+}
 
 // rolling on property
 const rollingOnProperty = function () {
@@ -200,18 +227,14 @@ const rollingOnProperty = function () {
     if (
       players[activePlayer].mapPosition === fmi.propertyOn[i].mapPositionSouth
     ) {
-      overlay.classList.remove("hidden");
-      onShow.src = `../propiedades/${fmi.propertyOn[i].nameImg}`;
-      onShow.classList.remove("hidden");
       btnBuy.classList.remove("hidden");
+      propertyPlay.push(fmi.propertyOn[i]);
     }
 };
 
 //**********functions to put in a event listener*************
 // roll dice
 const rollDice = function () {
-  // for (let i = 0; i < numberOfPlayers; i++) {
-  //   if (players[activePlayer]) {
   // all options that happen in the star of the turn when roll a dice
   if (players[activePlayer].startTurn) {
     movePlayer(players[activePlayer]);
@@ -220,14 +243,23 @@ const rollDice = function () {
   }
   if (players[activePlayer].finalTurn) {
     rollingOnProperty();
-    switchActivePlayer();
   }
-  // }
-  //
+};
+
+// buying
+
+const buying = function () {
+  paying(fmi, propertyPlay[0].landValueSouth, 1);
+  getProp(fmi);
+  propertyPlay = [];
+  btnBuy.classList.add("hidden");
+  switchActivePlayer();
 };
 
 // ************buttoms**********
 BtnRollDice.addEventListener("click", rollDice);
+btnBuy.addEventListener("click", buying);
+// btnUpgradeIndustry.addEventListener("click");
 
 //this function is to get position by clicking in the document
 
