@@ -1,0 +1,218 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#board {
+  position: relative;
+  display: inline-block;
+}
+
+.player {
+  position: absolute;
+  z-index: 5;
+}
+
+.btnRollDice {
+  position: absolute;
+  z-index: 5;
+  right: 800px;
+  top: 760px;
+}
+
+.diceImg {
+  position: absolute;
+  z-index: 5;
+  right: 880px;
+  top: 560px;
+  border-radius: 10%;
+}
+
+.diceImg2 {
+  position: absolute;
+  z-index: 5;
+  right: 820px;
+  top: 560px;
+  border-radius: 10%;
+}
+
+/* over lay class*/
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 10;
+}
+
+/* hiden class */
+.hidden {
+  display: none;
+}
+
+/* board spaces positions */
+.--40 {
+  right: 800px;
+  top: 960px;
+}
+
+.--1 {
+  left: 723px;
+  top: 952px;
+}
+.--2 {
+  left: 630px;
+  top: 949px;
+}
+.--3 {
+  left: 541px;
+  top: 946px;
+}
+.--4 {
+  left: 443px;
+  top: 960px;
+}
+.--5 {
+  left: 350px;
+  top: 934px;
+}
+.--6 {
+  left: 271px;
+  top: 898px;
+}
+.--7 {
+  left: 228px;
+  top: 813px;
+}
+.--8 {
+  left: 204px;
+  top: 713px;
+}
+.--9 {
+  left: 205px;
+  top: 617px;
+}
+.--10 {
+  left: 203px;
+  top: 522px;
+}
+
+.--11 {
+  left: 200px;
+  top: 436px;
+}
+.--12 {
+  left: 206px;
+  top: 334px;
+}
+.--13 {
+  left: 220px;
+  top: 231px;
+}
+.--14 {
+  left: 270px;
+  top: 146px;
+}
+.--15 {
+  left: 351px;
+  top: 100px;
+}
+.--16 {
+  left: 446px;
+  top: 98px;
+}
+.--17 {
+  left: 539px;
+  top: 104px;
+}
+.--18 {
+  left: 629px;
+  top: 102px;
+}
+.--19 {
+  left: 720px;
+  top: 100px;
+}
+.--20 {
+  left: 811px;
+  top: 101px;
+}
+.--21 {
+  left: 896px;
+  top: 102px;
+}
+.--22 {
+  left: 990px;
+  top: 102px;
+}
+.--23 {
+  left: 1071px;
+  top: 99px;
+}
+.--24 {
+  left: 1174px;
+  top: 99px;
+}
+.--25 {
+  left: 1269px;
+  top: 118px;
+}
+.--26 {
+  left: 1353px;
+  top: 155px;
+}
+.--27 {
+  left: 1404px;
+  top: 245px;
+}
+.--28 {
+  left: 1428px;
+  top: 345px;
+}
+.--29 {
+  left: 1423px;
+  top: 439px;
+}
+.--30 {
+  left: 1424px;
+  top: 531px;
+}
+.--31 {
+  left: 1415px;
+  top: 624px;
+}
+.--32 {
+  left: 1424px;
+  top: 711px;
+}
+.--33 {
+  left: 1409px;
+  top: 817px;
+}
+.--34 {
+  left: 1361px;
+  top: 898px;
+}
+.--35 {
+  left: 1270px;
+  top: 951px;
+}
+.--36 {
+  left: 1171px;
+  top: 964px;
+}
+.--37 {
+  left: 1075px;
+  top: 962px;
+}
+.--38 {
+  left: 983px;
+  top: 955px;
+}
+.--39 {
+  left: 899px;
+  top: 954px;
+}
