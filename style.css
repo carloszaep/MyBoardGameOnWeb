@@ -27,7 +27,7 @@
   right: 670px;
   top: 760px;
 }
-
+/* this button only show when call by a fucntion */
 .btnBuy {
   position: absolute;
   z-index: 15;
@@ -35,7 +35,35 @@
   top: 760px;
 }
 
+.btnExit {
+  position: absolute;
+  z-index: 15;
+  right: 900px;
+  top: 760px;
+}
+
+.btnPay {
+  position: absolute;
+  z-index: 15;
+  right: 670px;
+  top: 760px;
+}
+.btnUseGold {
+  position: absolute;
+  z-index: 15;
+  right: 900px;
+  top: 760px;
+}
+.btnPiracy {
+  position: absolute;
+  z-index: 15;
+  right: 670px;
+  top: 760px;
+}
 /* dices */
+.dices {
+  width: 50px;
+}
 .diceImg {
   position: absolute;
   z-index: 5;
@@ -69,6 +97,13 @@
   z-index: 15;
   right: 500px;
   top: 0;
+}
+/* show who's turn  */
+.showTurn {
+  position: absolute;
+  z-index: 5;
+  right: 620px;
+  top: 300px;
 }
 
 /* hiden class */

@@ -119,15 +119,23 @@ const azucar = new property(
 const BtnRollDice = document.querySelector(".btnRollDice");
 const btnUpgradeIndustry = document.querySelector(".btnUpgradeIndustry");
 const btnBuy = document.querySelector(".btnBuy");
+const btnExit = document.querySelector(".btnExit");
+const btnUseGold = document.querySelector(".btnUseGold");
+const btnPay = document.querySelector(".btnPay");
+const btnPiracy = document.querySelector(".btnPiracy");
 // dices img
 const diceImg = document.querySelector(".diceImg");
 const diceImg2 = document.querySelector(".diceImg2");
 // on show
 const onShow = document.querySelector(".onshow");
+// text that show who's turn
+const showTextTurn = document.querySelector("#playerTurn");
+
 // overlay
 const overlay = document.querySelector(".overlay");
 
 //*******game logic gloval variables*********
+
 // knowing what player is active by number
 let activePlayer = 1; // i need to make a function so the 1 chnage depending of player starTurn and finalTurns
 
@@ -135,7 +143,7 @@ let activePlayer = 1; // i need to make a function so the 1 chnage depending of 
 const players = [fmi];
 // list all properties
 const properties = [azucar];
-// adding all properties to fmi propertyOn
+// adding all properties to fmi propertyOn to star the game fmi had all property
 for (i of properties) {
   fmi.propertyOn.push(i);
 }
@@ -143,11 +151,17 @@ for (i of properties) {
 let numberOfPlayers = 2;
 
 if (numberOfPlayers === 2) {
+  // this function is going to change so user can put how many player
   players.push(player1);
   players.push(player2);
 }
 // property on play // had to make this list to know what property is going to (buy,upgrade or (es= piratiar))
 let propertyPlay = [];
+
+// this variables are to know what is happening know (and buttom exit can know where to exit)
+let buyingState;
+let piracyState;
+
 //********** functions ***********
 
 // when moving
@@ -194,6 +208,7 @@ const switchActivePlayer = function () {
     if (activePlayer === numberOfPlayers + 1) {
       activePlayer = 1;
     }
+    showTextTurn.textContent = players[activePlayer].name;
     BtnRollDice.classList.remove("hidden");
     btnUpgradeIndustry.classList.remove("hidden");
   }
@@ -224,11 +239,32 @@ function giveProp(whoGet) {
 // rolling on property
 const rollingOnProperty = function () {
   for (let i = 0; i < properties.length; i++)
-    if (
-      players[activePlayer].mapPosition === fmi.propertyOn[i].mapPositionSouth
-    ) {
-      btnBuy.classList.remove("hidden");
-      propertyPlay.push(fmi.propertyOn[i]);
+    // when rolling on a property on South
+    if (players[activePlayer].mapPosition === properties[i].mapPositionSouth) {
+      propertyPlay.push(properties[i]);
+      // if property on fmi
+      if (fmi.propertyOn.indexOf(properties[i]) !== -1) {
+        btnBuy.classList.remove("hidden");
+        btnExit.classList.remove("hidden");
+        buyingState = true;
+        // always when a property need action in another function it goes to propertyPlay
+        propertyPlay.push(properties[i]);
+      }
+      // if property onw by actual player
+      if (players[activePlayer].propertyOn.indexOf(properties[i]) !== -1) {
+        switchActivePlayer();
+      }
+      // if property own by another player
+      if (
+        players[activePlayer].propertyOn.indexOf(properties[i]) === -1 &&
+        fmi.propertyOn.indexOf(properties[i]) === -1
+      ) {
+        btnPay.classList.remove("hidden");
+        if (players[activePlayer].goldBar > 0) {
+          btnUseGold.classList.remove("hidden");
+        }
+        propertyPlay.push(properties[i]);
+      }
     }
 };
 
@@ -247,18 +283,81 @@ const rollDice = function () {
 };
 
 // buying
-
-const buying = function () {
-  paying(fmi, propertyPlay[0].landValueSouth, 1);
-  getProp(fmi);
+function exitBuying() {
   propertyPlay = [];
   btnBuy.classList.add("hidden");
+  btnExit.classList.add("hidden");
+  buyingState = false;
   switchActivePlayer();
+}
+
+const buying = function () {
+  // paying and getting property
+  paying(fmi, propertyPlay[0].landValueSouth, 1);
+  getProp(fmi);
+  // adding hidden class to buttoms and
+  exitBuying();
+};
+
+// pay to another player with money and gold
+function enterPiracy() {
+  btnPay.classList.add("hidden");
+  btnUseGold.classList.add("hidden");
+  btnPiracy.classList.remove("hidden");
+  btnExit.classList.remove("hidden");
+  piracyState = true;
+}
+const payToAnotherPlayer = function () {
+  for (let e = 1; e < players.length; e++) {
+    // to make skip player active
+    if (e === activePlayer) {
+      continue;
+    }
+    // paying the owner player
+    if (players[e].propertyOn.indexOf(propertyPlay[0]) !== -1) {
+      paying(
+        players[e],
+        propertyPlay[0].landValueSouth,
+        propertyPlay[0].numOfUpSouth
+      );
+      // adding class and removing class and enter in piracy state
+      enterPiracy();
+    }
+  }
+};
+// pay to another player with gold bar
+const goldToAnotherPlayer = function () {
+  for (let e = 1; e < players.length; e++) {
+    // to make skip player active
+    if (e === activePlayer) {
+      continue;
+    }
+    // paying the owner player
+    if (players[e].propertyOn.indexOf(propertyPlay[0]) !== -1) {
+      players[e].goldBar += 1;
+      players[activePlayer].goldBar -= 1;
+      // adding class and removing class and enter in piracy state
+      enterPiracy();
+    }
+  }
+};
+
+//exit
+const exit = function () {
+  if (buyingState) {
+    // if porperty is bought buy player fmi pay the price of the land
+    collecting(fmi, propertyPlay[0].landValueSouth, 1);
+    // then exit
+    exitBuying();
+  }
 };
 
 // ************buttoms**********
 BtnRollDice.addEventListener("click", rollDice);
 btnBuy.addEventListener("click", buying);
+btnPay.addEventListener("click", payToAnotherPlayer);
+btnUseGold.addEventListener("click", goldToAnotherPlayer);
+btnExit.addEventListener("click", exit);
 // btnUpgradeIndustry.addEventListener("click");
 
 //this function is to get position by clicking in the document

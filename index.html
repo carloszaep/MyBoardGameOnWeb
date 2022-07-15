@@ -18,24 +18,25 @@
       <!-- players img -->
       <img class="player player-1" src="../tablero/player1_img.png" alt="" />
       <img class="player player-2" src="../tablero/player2_img.png" alt="" />
+      <!-- showing who's turn  -->
+      <h2 class="showTurn">
+        Turno del jugador <span id="playerTurn">Player1</span>
+      </h2>
       <!-- dices -->
       <img
         src="../tablero/dice-1.png"
-        class="diceImg"
+        class="diceImg dices"
         alt="roll dice img"
-        width="50px"
       />
       <img
         src="../tablero/dice-1.png"
-        class="diceImg2"
+        class="diceImg2 dices"
         alt="roll dice img"
-        width="50px"
       />
       <img
         src="../tablero/dice-1.png"
-        class="diceImg3 hidden"
+        class="diceImg3 dices hidden"
         alt="roll dice img"
-        width="50px"
       />
       <!-- overlay cap -->
       <div class="overlay hidden"></div>
@@ -43,6 +44,10 @@
       <button class="btn btnRollDice">Tirar Dado</button>
       <button class="btn btnUpgradeIndustry">Construir Idustrias</button>
       <button class="btn btnBuy hidden">Comprar</button>
+      <button class="btn btnExit hidden">Salir</button>
+      <button class="btn btnPay hidden">Pagar</button>
+      <button class="btn btnUseGold hidden">Usar Barra de Oro</button>
+      <button class="btn btnPiracy hidden">Piratear</button>
       <!-- properties -->
 
       <!--  on show -->
