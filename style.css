@@ -60,6 +60,12 @@
   right: 670px;
   top: 760px;
 }
+.btnPiraceChain {
+  position: absolute;
+  z-index: 15;
+  right: 670px;
+  top: 660px;
+}
 /* dices */
 .dices {
   width: 50px;

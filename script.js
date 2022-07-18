@@ -123,6 +123,7 @@ const btnExit = document.querySelector(".btnExit");
 const btnUseGold = document.querySelector(".btnUseGold");
 const btnPay = document.querySelector(".btnPay");
 const btnPiracy = document.querySelector(".btnPiracy");
+const btnPiraceChain = document.querySelector(".btnPiraceChain");
 // dices img
 const diceImg = document.querySelector(".diceImg");
 const diceImg2 = document.querySelector(".diceImg2");
@@ -161,6 +162,7 @@ let propertyPlay = [];
 // this variables are to know what is happening know (and buttom exit can know where to exit)
 let buyingState;
 let piracyState;
+let chainState;
 
 //********** functions ***********
 
@@ -307,26 +309,105 @@ function enterPiracy() {
   btnExit.classList.remove("hidden");
   piracyState = true;
 }
+function enterPiracyChain() {
+  btnPiraceChain.classList.remove("hidden");
+  chainState = true;
+}
 const payToAnotherPlayer = function () {
   for (let e = 1; e < players.length; e++) {
+    // making a variable to just to see what property is in play
+    let proPlay = propertyPlay[0];
     // to make skip player active
     if (e === activePlayer) {
       continue;
     }
     // paying the owner player
-    if (players[e].propertyOn.indexOf(propertyPlay[0]) !== -1) {
-      paying(
-        players[e],
-        propertyPlay[0].landValueSouth,
-        propertyPlay[0].numOfUpSouth
-      );
-      // adding class and removing class and enter in piracy state
-      enterPiracy();
+    if (players[e].propertyOn.indexOf(proPlay) !== -1) {
+      // check if your playing in south or north
+      if (players[activePlayer].mapPosition === proPlay.mapPositionSouth) {
+        // paying the actual property
+        paying(players[e], proPlay.landValueSouth, proPlay.numOfUpSouth);
+        enterPiracy();
+        // check if player had the chain (property plus 1 and 2 there are other type of check if chain)
+        for (let p = 0; p < properties.length; p++) {
+          if (
+            proPlay === properties[p] &&
+            (p === 0 || p === 3 || p === 8) &&
+            players[e].propertyOn.indexOf(properties[p + 1]) !== -1 &&
+            players[e].propertyOn.indexOf(properties[p + 2]) !== -1
+          ) {
+            paying(
+              players[e],
+              properties[p + 1],
+              properties[p + 1].numOfUpSouth
+            );
+            paying(
+              players[e],
+              properties[p + 2].landValueSouth,
+              properties[p + 2].numOfUpSouth
+            );
+            enterPiracyChain();
+          }
+          if (
+            proPlay === properties[p] &&
+            (p === 1 || p === 4 || p === 9) &&
+            players[e].propertyOn.indexOf(properties[p + 1]) !== -1 &&
+            players[e].propertyOn.indexOf(properties[p - 1]) !== -1
+          ) {
+            paying(
+              players[e],
+              properties[p + 1],
+              properties[p + 1].numOfUpSouth
+            );
+            paying(
+              players[e],
+              properties[p - 1].landValueSouth,
+              properties[p - 1].numOfUpSouth
+            );
+            enterPiracyChain();
+          }
+          if (
+            proPlay === properties[p] &&
+            (p === 2 || p === 5 || p === 10) &&
+            players[e].propertyOn.indexOf(properties[p - 1]) !== -1 &&
+            players[e].propertyOn.indexOf(properties[p - 2]) !== -1
+          ) {
+            paying(
+              players[e],
+              properties[p - 1],
+              properties[p - 1].numOfUpSouth
+            );
+            paying(
+              players[e],
+              properties[p - 2].landValueSouth,
+              properties[p - 2].numOfUpSouth
+            );
+            enterPiracyChain();
+          }
+          if (
+            proPlay === properties[6] &&
+            players[e].propertyOn.indexOf(properties[7]) !== -1
+          ) {
+            paying(players[e], properties[7], properties[7].numOfUpSouth);
+
+            enterPiracyChain();
+          } else if (
+            proPlay === properties[7] &&
+            players[e].propertyOn.indexOf(properties[6]) !== -1
+          ) {
+            paying(players[e], properties[6], properties[6].numOfUpSouth);
+
+            enterPiracyChain();
+          }
+        }
+      }
     }
   }
 };
 // pay to another player with gold bar
 const goldToAnotherPlayer = function () {
+  // making a variable to just to see what property is in play
+  let proPlay = propertyPlay[0];
   for (let e = 1; e < players.length; e++) {
     // to make skip player active
     if (e === activePlayer) {
@@ -338,6 +419,45 @@ const goldToAnotherPlayer = function () {
       players[activePlayer].goldBar -= 1;
       // adding class and removing class and enter in piracy state
       enterPiracy();
+      // knowing if player had chain so can go into chain state
+      // check if player had the chain (property plus 1 and 2 there are other type of check if chain)
+      for (let p = 0; p < properties.length; p++) {
+        if (
+          proPlay === properties[p] &&
+          (p === 0 || p === 3 || p === 8) &&
+          players[e].propertyOn.indexOf(properties[p + 1]) !== -1 &&
+          players[e].propertyOn.indexOf(properties[p + 2]) !== -1
+        ) {
+          enterPiracyChain();
+        }
+        if (
+          proPlay === properties[p] &&
+          (p === 1 || p === 4 || p === 9) &&
+          players[e].propertyOn.indexOf(properties[p + 1]) !== -1 &&
+          players[e].propertyOn.indexOf(properties[p - 1]) !== -1
+        ) {
+          enterPiracyChain();
+        }
+        if (
+          proPlay === properties[p] &&
+          (p === 2 || p === 5 || p === 10) &&
+          players[e].propertyOn.indexOf(properties[p - 1]) !== -1 &&
+          players[e].propertyOn.indexOf(properties[p - 2]) !== -1
+        ) {
+          enterPiracyChain();
+        }
+        if (
+          proPlay === properties[6] &&
+          players[e].propertyOn.indexOf(properties[7]) !== -1
+        ) {
+          enterPiracyChain();
+        } else if (
+          proPlay === properties[7] &&
+          players[e].propertyOn.indexOf(properties[6]) !== -1
+        ) {
+          enterPiracyChain();
+        }
+      }
     }
   }
 };
