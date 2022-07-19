@@ -97,13 +97,43 @@ const azucar = new property(
   600,
   1,
   21,
-  0,
-  0,
+  1,
+  1,
   "azucar.png",
   "azucar_res.png"
 );
-// const banano = new property(150, 300, 250, 300, 450, 500, 600, 900, 2, 22, 0, 0, 'banano.png', 'banano_res.png')
-// const cacao = new property(200, 400, 300, 400, 600, 600, 800, 1200, 3, 23, 0, 0, 'cacao.png','cacao_res.png')
+const banano = new property(
+  150,
+  300,
+  250,
+  300,
+  450,
+  500,
+  600,
+  900,
+  2,
+  22,
+  1,
+  1,
+  "banano.png",
+  "banano_res.png"
+);
+const cacao = new property(
+  200,
+  400,
+  300,
+  400,
+  600,
+  600,
+  800,
+  1200,
+  3,
+  23,
+  1,
+  1,
+  "cacao.png",
+  "cacao_res.png"
+);
 // const algodon = new property(250, 500, 350, 500, 750, 750, 1000, 1500, 5, 25, 0, 0, 'algodon.png')
 // const tabaco = new property(300, 600, 450, 600, 900, 900, 1200, 1800, 6, 26, 0, 0, 'tabaco.png')
 // const cafe = new property(350, 700, 500, 700, 1000, 1000, 1400, 2100, 7, 27, 0, 0, 'cafe.png')
@@ -143,10 +173,10 @@ let activePlayer = 1; // i need to make a function so the 1 chnage depending of 
 // list all player fmi is already on
 const players = [fmi];
 // list all properties
-const properties = [azucar];
+const properties = [azucar, banano, cacao];
 // adding all properties to fmi propertyOn to star the game fmi had all property
 for (i of properties) {
-  fmi.propertyOn.push(i);
+  player1.propertyOn.push(i);
 }
 // number of player is going to be define lether by the user
 let numberOfPlayers = 2;
@@ -217,35 +247,40 @@ const switchActivePlayer = function () {
 };
 // paying and getting property
 function paying(whoGet, value, times) {
-  players[activePlayer].money -= value * times;
-  whoGet.money += value * times;
+  if (times !== 0) {
+    players[activePlayer].money -= value * times;
+    whoGet.money += value * times;
+  }
 }
 
 function collecting(whoPay, value, times) {
-  whoPay.money -= value * times;
-  players[activePlayer].money += value * times;
+  if (times !== 0) {
+    whoPay.money -= value * times;
+    players[activePlayer].money += value * times;
+  }
 }
 
-function getProp(whoGive) {
-  players[activePlayer].propertyOn.push(propertyPlay[0]);
-  let removeIndex = whoGive.propertyOn.indexOf(propertyPlay[0]);
+function getProp(whoGive, porperty) {
+  players[activePlayer].propertyOn.push(porperty);
+  let removeIndex = whoGive.propertyOn.indexOf(porperty);
   whoGive.propertyOn.splice(removeIndex, 1);
 }
 
-function giveProp(whoGet) {
-  whoGet.propertyOn.push(propertyPlay[0]);
-  let removeIndex = players[activePlayer].propertyOn.indexOf(propertyPlay[0]);
-  players[activePlayer].propertyOn.splice(removeIndex, 1);
-}
+// function giveProp(whoGet) {
+//   whoGet.propertyOn.push(propertyPlay[0]);
+//   let removeIndex = players[activePlayer].propertyOn.indexOf(propertyPlay[0]);
+//   players[activePlayer].propertyOn.splice(removeIndex, 1);
+// }
 
 // rolling on property
 const rollingOnProperty = function () {
   for (let i = 0; i < properties.length; i++)
     // when rolling on a property on South
     if (players[activePlayer].mapPosition === properties[i].mapPositionSouth) {
-      propertyPlay.push(properties[i]);
+      let proPlay = properties[i];
       // if property on fmi
-      if (fmi.propertyOn.indexOf(properties[i]) !== -1) {
+      if (fmi.propertyOn.indexOf(proPlay) !== -1) {
+        propertyPlay.push(proPlay);
         btnBuy.classList.remove("hidden");
         btnExit.classList.remove("hidden");
         buyingState = true;
@@ -253,19 +288,20 @@ const rollingOnProperty = function () {
         propertyPlay.push(properties[i]);
       }
       // if property onw by actual player
-      if (players[activePlayer].propertyOn.indexOf(properties[i]) !== -1) {
+      if (players[activePlayer].propertyOn.indexOf(proPlay) !== -1) {
         switchActivePlayer();
+        break;
       }
       // if property own by another player
       if (
-        players[activePlayer].propertyOn.indexOf(properties[i]) === -1 &&
-        fmi.propertyOn.indexOf(properties[i]) === -1
+        players[activePlayer].propertyOn.indexOf(proPlay) === -1 &&
+        fmi.propertyOn.indexOf(proPlay) === -1
       ) {
         btnPay.classList.remove("hidden");
         if (players[activePlayer].goldBar > 0) {
           btnUseGold.classList.remove("hidden");
         }
-        propertyPlay.push(properties[i]);
+        propertyPlay.push(proPlay);
       }
     }
 };
@@ -296,23 +332,13 @@ function exitBuying() {
 const buying = function () {
   // paying and getting property
   paying(fmi, propertyPlay[0].landValueSouth, 1);
-  getProp(fmi);
+  getProp(fmi, propertyPlay[0]);
   // adding hidden class to buttoms and
   exitBuying();
 };
 
 // pay to another player with money and gold
-function enterPiracy() {
-  btnPay.classList.add("hidden");
-  btnUseGold.classList.add("hidden");
-  btnPiracy.classList.remove("hidden");
-  btnExit.classList.remove("hidden");
-  piracyState = true;
-}
-function enterPiracyChain() {
-  btnPiraceChain.classList.remove("hidden");
-  chainState = true;
-}
+
 const payToAnotherPlayer = function () {
   for (let e = 1; e < players.length; e++) {
     // making a variable to just to see what property is in play
@@ -338,7 +364,7 @@ const payToAnotherPlayer = function () {
           ) {
             paying(
               players[e],
-              properties[p + 1],
+              properties[p + 1].landValueSouth,
               properties[p + 1].numOfUpSouth
             );
             paying(
@@ -356,7 +382,7 @@ const payToAnotherPlayer = function () {
           ) {
             paying(
               players[e],
-              properties[p + 1],
+              properties[p + 1].landValueSouth,
               properties[p + 1].numOfUpSouth
             );
             paying(
@@ -374,7 +400,7 @@ const payToAnotherPlayer = function () {
           ) {
             paying(
               players[e],
-              properties[p - 1],
+              properties[p - 1].landValueSouth,
               properties[p - 1].numOfUpSouth
             );
             paying(
@@ -388,14 +414,22 @@ const payToAnotherPlayer = function () {
             proPlay === properties[6] &&
             players[e].propertyOn.indexOf(properties[7]) !== -1
           ) {
-            paying(players[e], properties[7], properties[7].numOfUpSouth);
+            paying(
+              players[e],
+              properties[7].landValueSouth,
+              properties[7].numOfUpSouth
+            );
 
             enterPiracyChain();
           } else if (
             proPlay === properties[7] &&
             players[e].propertyOn.indexOf(properties[6]) !== -1
           ) {
-            paying(players[e], properties[6], properties[6].numOfUpSouth);
+            paying(
+              players[e],
+              properties[6].landValueSouth,
+              properties[6].numOfUpSouth
+            );
 
             enterPiracyChain();
           }
@@ -461,22 +495,201 @@ const goldToAnotherPlayer = function () {
     }
   }
 };
+// pirated property
 
+function exitPiracy() {
+  propertyPlay = [];
+  btnPiracy.classList.add("hidden");
+  btnExit.classList.add("hidden");
+  btnPiraceChain.classList.add("hidden");
+  chainState = false;
+  piracyState = false;
+  switchActivePlayer();
+}
+function enterPiracy() {
+  btnPay.classList.add("hidden");
+  btnUseGold.classList.add("hidden");
+  btnPiracy.classList.remove("hidden");
+  btnExit.classList.remove("hidden");
+  piracyState = true;
+}
+function enterPiracyChain() {
+  btnPiraceChain.classList.remove("hidden");
+  chainState = true;
+}
+const toalValuePlusUpgrade = function (proPlay) {
+  // adding all possible value to the variable total
+  let total = 0;
+  if (proPlay.numOfUpSouth === 0) {
+    total = proPlay.landValueSouth;
+  }
+  if (proPlay.numOfUpSouth === 1) {
+    total =
+      proPlay.landValueSouth +
+      proPlay.upgradeSouth1 +
+      (proPlay.numOfUpNorth === 1 ? proPlay.upgradeNorth1 : 0);
+  }
+  if (proPlay.numOfUpSouth === 2) {
+    total =
+      proPlay.landValueSouth +
+      proPlay.upgradeSouth1 +
+      proPlay.upgradeSouth2 +
+      (proPlay.numOfUpNorth === 2
+        ? proPlay.upgradeNorth2 + proPlay.upgradeNorth1
+        : proPlay.upgradeNorth1);
+  }
+  if (proPlay.numOfUpSouth === 3) {
+    total =
+      proPlay.landValueSouth +
+      proPlay.upgradeSouth1 +
+      proPlay.upgradeSouth2 +
+      proPlay.upgradeSouth3 +
+      (proPlay.numOfUpNorth === 3
+        ? proPlay.upgradeNorth3 + proPlay.upgradeNorth1 + proPlay.upgradeNorth2
+        : proPlay.upgradeNorth2 + proPlay.upgradeNorth1);
+  }
+  return total;
+};
+
+// when press the buttoms
+const piracying = function () {
+  for (let e = 1; e < players.length; e++) {
+    let proPlay = propertyPlay[0];
+    // to make skip player active
+    if (e === activePlayer) {
+      continue;
+    }
+    if (players[e].propertyOn.indexOf(proPlay) !== -1) {
+      // finish the piracy and change turn
+      paying(fmi, chainState ? 4000 : 2000, 1);
+      paying(players[e], toalValuePlusUpgrade(proPlay), 1);
+      getProp(players[e], propertyPlay[0]);
+      exitPiracy();
+    }
+  }
+};
+
+const piracyingChain = function () {
+  let proPlay = propertyPlay[0];
+  for (let e = 1; e < players.length; e++) {
+    // to make skip player active
+    if (e === activePlayer) {
+      continue;
+    }
+
+    if (players[e].propertyOn.indexOf(proPlay) !== -1) {
+      for (let p = 0; p < properties.length; p++) {
+        if (
+          proPlay === properties[p] &&
+          (p === 0 || p === 3 || p === 8) &&
+          players[e].propertyOn.indexOf(properties[p + 1]) !== -1 &&
+          players[e].propertyOn.indexOf(properties[p + 2]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) +
+              toalValuePlusUpgrade(properties[p + 1]) +
+              toalValuePlusUpgrade(properties[p + 2]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[p + 1]);
+          getProp(players[e], properties[p + 2]);
+          break;
+        }
+        if (
+          proPlay === properties[p] &&
+          (p === 1 || p === 4 || p === 9) &&
+          players[e].propertyOn.indexOf(properties[p + 1]) !== -1 &&
+          players[e].propertyOn.indexOf(properties[p - 1]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) +
+              toalValuePlusUpgrade(properties[p + 1]) +
+              toalValuePlusUpgrade(properties[p - 1]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[p + 1]);
+          getProp(players[e], properties[p - 1]);
+          break;
+        }
+        if (
+          proPlay === properties[p] &&
+          (p === 2 || p === 5 || p === 10) &&
+          players[e].propertyOn.indexOf(properties[p - 1]) !== -1 &&
+          players[e].propertyOn.indexOf(properties[p - 2]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) +
+              toalValuePlusUpgrade(properties[p - 1]) +
+              toalValuePlusUpgrade(properties[p - 2]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[p - 1]);
+          getProp(players[e], properties[p - 2]);
+          break;
+        }
+        if (
+          proPlay === properties[6] &&
+          players[e].propertyOn.indexOf(properties[7]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) + toalValuePlusUpgrade(properties[7]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[7]);
+
+          break;
+        } else if (
+          proPlay === properties[7] &&
+          players[e].propertyOn.indexOf(properties[6]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) + toalValuePlusUpgrade(properties[6]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[6]);
+          break;
+        }
+      }
+    }
+  }
+  exitPiracy();
+};
 //exit
 const exit = function () {
   if (buyingState) {
     // if porperty is bought buy player fmi pay the price of the land
+
     collecting(fmi, propertyPlay[0].landValueSouth, 1);
     // then exit
     exitBuying();
   }
+  if (piracyState) {
+    exitPiracy();
+  }
 };
 
-// ************buttoms**********
+// ************buttoms actions**********
 BtnRollDice.addEventListener("click", rollDice);
 btnBuy.addEventListener("click", buying);
 btnPay.addEventListener("click", payToAnotherPlayer);
 btnUseGold.addEventListener("click", goldToAnotherPlayer);
+btnPiracy.addEventListener("click", piracying);
+btnPiraceChain.addEventListener("click", piracyingChain);
 btnExit.addEventListener("click", exit);
 // btnUpgradeIndustry.addEventListener("click");
 
