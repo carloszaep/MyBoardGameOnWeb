@@ -85,6 +85,20 @@
   top: 560px;
   border-radius: 10%;
 }
+.diceImg3 {
+  position: absolute;
+  z-index: 5;
+  right: 760px;
+  top: 560px;
+  border-radius: 10%;
+}
+.diceImg4 {
+  position: absolute;
+  z-index: 5;
+  right: 700px;
+  top: 560px;
+  border-radius: 10%;
+}
 
 /* over lay class*/
 .overlay {
