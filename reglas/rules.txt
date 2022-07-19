@@ -148,3 +148,94 @@ Los 12 terrenos con 3 industrias nacionales y 3 de exportación cada uno
 
 DERROTA:
 Todos los jugadores van quebrando y el FMI embarga todas sus propiedades
+
+
+for (let p = 0; p < properties.length; p++) {
+        if (
+          proPlay === properties[p] &&
+          (p === 0 || p === 3 || p === 8) &&
+          players[e].propertyOn.indexOf(properties[p + 1]) !== -1 &&
+          players[e].propertyOn.indexOf(properties[p + 2]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) +
+              toalValuePlusUpgrade(properties[p + 1]) +
+              toalValuePlusUpgrade(properties[p + 2]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[p + 1]);
+          getProp(players[e], properties[p + 2]);
+          break;
+        }
+        if (
+          proPlay === properties[p] &&
+          (p === 1 || p === 4 || p === 9) &&
+          players[e].propertyOn.indexOf(properties[p + 1]) !== -1 &&
+          players[e].propertyOn.indexOf(properties[p - 1]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) +
+              toalValuePlusUpgrade(properties[p + 1]) +
+              toalValuePlusUpgrade(properties[p - 1]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[p + 1]);
+          getProp(players[e], properties[p - 1]);
+          break;
+        }
+        if (
+          proPlay === properties[p] &&
+          (p === 2 || p === 5 || p === 10) &&
+          players[e].propertyOn.indexOf(properties[p - 1]) !== -1 &&
+          players[e].propertyOn.indexOf(properties[p - 2]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) +
+              toalValuePlusUpgrade(properties[p - 1]) +
+              toalValuePlusUpgrade(properties[p - 2]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[p - 1]);
+          getProp(players[e], properties[p - 2]);
+          break;
+        }
+        if (
+          proPlay === properties[6] &&
+          players[e].propertyOn.indexOf(properties[7]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) + toalValuePlusUpgrade(properties[7]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[7]);
+
+          break;
+        } else if (
+          proPlay === properties[7] &&
+          players[e].propertyOn.indexOf(properties[6]) !== -1
+        ) {
+          paying(fmi, 2000, 1);
+          paying(
+            players[e],
+            toalValuePlusUpgrade(proPlay) + toalValuePlusUpgrade(properties[6]),
+            1
+          );
+          getProp(players[e], proPlay);
+          getProp(players[e], properties[6]);
+          break;
+        }
+      }
+    }
+  }
