@@ -63,15 +63,15 @@ class property {
 //****************assigning classes *************
 
 //fmi count as a player
-const fmi = new player("fmi", [], 120000, 0, null, null, null, null, null);
+const fmi = new player("FMI", [], 120000, 0, null, null, null, null, null);
 //players
 const player1 = new player(
   "player1",
   [],
-  -31000,
+  0,
   3,
-  20,
-  20,
+  40,
+  40,
   document.querySelector(".player-1"),
   true,
   false,
@@ -84,15 +84,53 @@ const player2 = new player(
   [],
   0,
   3,
-  20,
-  20,
+  40,
+  40,
   document.querySelector(".player-2"),
   false,
   false,
   false,
   false
 );
-
+const player3 = new player(
+  "player3",
+  [],
+  0,
+  3,
+  40,
+  40,
+  document.querySelector(".player-2"),
+  false,
+  false,
+  false,
+  false
+);
+const player4 = new player(
+  "player4",
+  [],
+  0,
+  3,
+  40,
+  40,
+  document.querySelector(".player-2"),
+  false,
+  false,
+  false,
+  false
+);
+const player5 = new player(
+  "player5",
+  [],
+  0,
+  3,
+  40,
+  40,
+  document.querySelector(".player-2"),
+  false,
+  false,
+  false,
+  false
+);
 // property
 const azucar = new property(
   100,
@@ -142,15 +180,150 @@ const cacao = new property(
   "cacao.png",
   "cacao_res.png"
 );
-// const algodon = new property(250, 500, 350, 500, 750, 750, 1000, 1500, 5, 25, 0, 0, 'algodon.png')
-// const tabaco = new property(300, 600, 450, 600, 900, 900, 1200, 1800, 6, 26, 0, 0, 'tabaco.png')
-// const cafe = new property(350, 700, 500, 700, 1000, 1000, 1400, 2100, 7, 27, 0, 0, 'cafe.png')
-// const pesca = new property(400, 800, 600, 800, 1200, 1200, 1600, 2400, 9, 29, 0, 0, 'pesca.png')
-// const ganado = new property(500, 1000, 750, 1000, 1500, 1500, 2000, 3000, 11, 31, 0, 0, 'ganado.png')
-// const cobre = new property(600, 1200, 900, 1200, 1800, 1800, 2400, 3600, 13, 33, 0, 0, 'cobre.png')
-// const estano = new property(700, 1400, 1050, 1400, 2100, 2100, 2800, 4200, 14, 34, 0, 0, 'estano.png')
-// const hierro = new property(800, 1600, 1200, 1600, 2400, 2400, 3200, 4800, 15, 35, 0, 0, 'hierro.png')
-// const petroleo = new property(1200, 2400, 1800, 2400, 3600, 3600, 4800, 7200, 17, 37, 0, 0, 'petroleo.png')
+const algodon = new property(
+  250,
+  500,
+  350,
+  500,
+  750,
+  750,
+  1000,
+  1500,
+  5,
+  25,
+  0,
+  0,
+  "algodon.png",
+  "algodon_res.png"
+);
+const tabaco = new property(
+  300,
+  600,
+  450,
+  600,
+  900,
+  900,
+  1200,
+  1800,
+  6,
+  26,
+  0,
+  0,
+  "tabaco.png",
+  "tabaco_res.png"
+);
+const cafe = new property(
+  350,
+  700,
+  500,
+  700,
+  1000,
+  1000,
+  1400,
+  2100,
+  7,
+  27,
+  0,
+  0,
+  "cafe.png",
+  "cafe_res.png"
+);
+const pesca = new property(
+  400,
+  800,
+  600,
+  800,
+  1200,
+  1200,
+  1600,
+  2400,
+  9,
+  29,
+  0,
+  0,
+  "pesca.png",
+  "pesca_res.png"
+);
+const ganado = new property(
+  500,
+  1000,
+  750,
+  1000,
+  1500,
+  1500,
+  2000,
+  3000,
+  11,
+  31,
+  0,
+  0,
+  "ganado.png",
+  "ganado_res.png"
+);
+const cobre = new property(
+  600,
+  1200,
+  900,
+  1200,
+  1800,
+  1800,
+  2400,
+  3600,
+  13,
+  33,
+  0,
+  0,
+  "cobre.png",
+  "cobre_res.png"
+);
+const estano = new property(
+  700,
+  1400,
+  1050,
+  1400,
+  2100,
+  2100,
+  2800,
+  4200,
+  14,
+  34,
+  0,
+  0,
+  "estano.png",
+  "estano_res.png"
+);
+const hierro = new property(
+  800,
+  1600,
+  1200,
+  1600,
+  2400,
+  2400,
+  3200,
+  4800,
+  15,
+  35,
+  0,
+  0,
+  "hierro.png",
+  "hierro_res.png"
+);
+const petroleo = new property(
+  1200,
+  2400,
+  1800,
+  2400,
+  3600,
+  3600,
+  4800,
+  7200,
+  17,
+  37,
+  0,
+  0,
+  "petroleo.png",
+  "petroleo_res.png"
+);
 
 // ***********defining html element**********
 // buttoms
@@ -162,6 +335,7 @@ const btnUseGold = document.querySelector(".btnUseGold");
 const btnPay = document.querySelector(".btnPay");
 const btnPiracy = document.querySelector(".btnPiracy");
 const btnPiraceChain = document.querySelector(".btnPiraceChain");
+const btnStart = document.querySelector(".btnStart");
 // dices img
 const diceImg = document.querySelector(".diceImg");
 const diceImg2 = document.querySelector(".diceImg2");
@@ -182,20 +356,30 @@ let activePlayer = 1; // i need to make a function so the 1 chnage depending of 
 
 // list all player fmi is already on
 const players = [fmi];
+// list of all player to be add in players list that is the want that playing
+let listOfPlayer = [player1, player2, player3, player4, player5];
 // list all properties
-const properties = [azucar, banano, cacao, 2, 3, 4, 5, 6, 7, 8];
+const properties = [
+  azucar,
+  banano,
+  cacao,
+  algodon,
+  tabaco,
+  cafe,
+  pesca,
+  ganado,
+  cobre,
+  estano,
+  hierro,
+  petroleo,
+];
 // adding all properties to fmi propertyOn to star the game fmi had all property
 for (i of properties) {
-  player1.propertyOn.push(i);
+  fmi.propertyOn.push(i);
 }
 // number of player is going to be define lether by the user
-let numberOfPlayers = 2;
+let numberOfPlayers;
 
-if (numberOfPlayers === 2) {
-  // this function is going to change so user can put how many player
-  players.push(player1);
-  players.push(player2);
-}
 // property on play // had to make this list to know what property is going to (buy,upgrade or (es= piratiar))
 let propertyPlay = [];
 
@@ -205,8 +389,57 @@ let piracyState;
 let payingState;
 let chainState;
 
-//********** functions ***********
-// displays
+// ***********displays functions*********
+// start the game
+const startGame = function () {
+  numberOfPlayers = Number(document.querySelector("#numbersOfplayers").value);
+  player1.name = document.querySelector("#player1Name").value;
+  player2.name = document.querySelector("#player2Name").value;
+  player3.name = document.querySelector("#player3Name").value;
+  player4.name = document.querySelector("#player4Name").value;
+  player5.name = document.querySelector("#player5Name").value;
+
+  if (numberOfPlayers >= 2 && numberOfPlayers <= 5) {
+    for (let e = 0; e < numberOfPlayers; e++) {
+      players.push(listOfPlayer[e]);
+    }
+    document.querySelector(".formStar").classList.add("hidden");
+    overlay.classList.add("hidden");
+    displayPlayers();
+  }
+};
+
+// displays pllayer
+function displayPlayers() {
+  for (let e of players) {
+    let row = document.querySelector(".row");
+    let col = document.createElement("div");
+    let hName = document.createElement("h2");
+    let pMoney = document.createElement("p");
+    let pGold = document.createElement("p");
+
+    let money = document.createTextNode(`Dinero ${e.money}`);
+    let name = document.createTextNode(`${e.name}`);
+    let goldBars = document.createTextNode(`Barras de Oro ${e.goldBar}`);
+    hName.appendChild(name);
+    pMoney.appendChild(money);
+    pGold.appendChild(goldBars);
+    col.appendChild(hName);
+    col.appendChild(pMoney);
+    col.appendChild(pGold);
+    for (let i of e.propertyOn) {
+      let pImg = document.createElement("img");
+      pImg.src = `/propiedades/${i.nameImgRes}`;
+      pImg.style.padding = "0.2rem";
+
+      col.appendChild(pImg);
+    }
+    row.appendChild(col).classList.add("col", "col-lg-2", "col-sm-2");
+  }
+}
+
+//**********games functions ***********
+
 // when moving and check for dices
 const movePlayer = function (player) {
   // dices
@@ -474,6 +707,7 @@ const buying = function () {
   // adding hidden class to buttoms and
   exitBuying();
 };
+
 // this function first check if player had chain and if had a return value of total change and also return what was the others chain property
 function returnChainValue(proPlay, owner) {
   for (let p = 0; p < properties.length; p++) {
@@ -770,6 +1004,7 @@ const exit = function () {
 };
 
 // ************buttoms actions**********
+btnStart.addEventListener("click", startGame);
 BtnRollDice.addEventListener("click", rollDice);
 btnBuy.addEventListener("click", buying);
 btnPay.addEventListener("click", payToAnotherPlayer);

@@ -1,6 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 * {
+  font-family: "Bebas Neue", cursive;
   margin: 0;
   padding: 0;
+}
+body {
+  background-color: #f2d7d9;
 }
 
 #board {
@@ -17,7 +23,7 @@
 .btnRollDice {
   position: absolute;
   z-index: 5;
-  right: 800px;
+  right: 900px;
   top: 760px;
 }
 
@@ -42,13 +48,13 @@
   top: 760px;
 }
 
-.btnPay {
+.btnUseGold {
   position: absolute;
   z-index: 15;
   right: 670px;
   top: 760px;
 }
-.btnUseGold {
+.btnPay {
   position: absolute;
   z-index: 15;
   right: 900px;
@@ -111,6 +117,15 @@
   backdrop-filter: blur(3px);
   z-index: 10;
 }
+/* form that ask number of players and name */
+.formStar {
+  position: absolute;
+  z-index: 15;
+  right: 620px;
+  top: 300px;
+  color: black;
+  width: 30%;
+}
 /* on show */
 .onshow {
   position: absolute;
@@ -129,6 +144,10 @@
 /* hiden class */
 .hidden {
   display: none;
+}
+
+#players {
+  padding: 2%;
 }
 
 /* board spaces positions */
