@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 * {
-  font-family: "Bebas Neue", cursive;
+  font-family: 'Bebas Neue', cursive;
   margin: 0;
   padding: 0;
 }
@@ -119,12 +119,32 @@ body {
 }
 /* form that ask number of players and name */
 .formStar {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   position: absolute;
   z-index: 15;
-  right: 620px;
-  top: 300px;
-  color: black;
-  width: 30%;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+
+  background-color: white;
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+}
+.form {
+  width: 50%;
+}
+.fromText {
+  font-size: 1.5rem;
+  line-height: 3.5rem;
+  text-align: center;
+  position: absolute;
+  top: 100px;
+  right: 400px;
+  width: 400px;
+  float: right;
 }
 /* on show */
 .onshow {
@@ -148,6 +168,10 @@ body {
 
 #players {
   padding: 2%;
+}
+#rules {
+  text-align: center;
+  margin-right: 200px;
 }
 
 /* board spaces positions */

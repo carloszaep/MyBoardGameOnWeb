@@ -4,19 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/tablero/board-game.png">
+    <link rel="icon" href="/tablero/board-game.png" />
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
 
     <link rel="stylesheet" href="style.css" />
-    <title>Deuda Eterna</title>
+    <title>My Board Game</title>
   </head>
   <body class="">
     <section>
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Deuda Eterna <img src="/tablero/board-game.png" alt="" width="35px"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <a class="navbar-brand" href="#"
+            >My Board Game
+            <img src="/tablero/board-game.png" alt="" width="35px"
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
@@ -30,7 +46,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="#rules">Reglas</a>
               </li>
-              
             </ul>
           </div>
         </div>
@@ -38,32 +53,69 @@
     </section>
 
     <section id="board">
-      <div class="formStar">       
-            <label for="numbersOfplayers">Numeros de Jugadores 2-5:</label><br>
-            <input type="number" id="numbersOfplayers" min="2" max="5"><br>
+      <div class="formStar">
+        <div class="from">
+          <label for="numbersOfplayers">Numeros de Jugadores 2-5:</label><br />
+          <input type="number" id="numbersOfplayers" min="2" max="5" /><br />
 
-            <label for="player1Name">Jugador-1 Nombre:</label><br>
-            <input type="text" id="player1Name" placeholder="Nombre"><br><br>
+          <label for="player1Name">Jugador-1 Nombre:</label><br />
+          <input
+            type="text"
+            id="player1Name"
+            placeholder="Nombre"
+          /><br /><br />
 
-            <label for="player2Name">Jugador-2 Nombre:</label><br>
-            <input type="text" id="player2Name" placeholder="Nombre"><br><br>
+          <label for="player2Name">Jugador-2 Nombre:</label><br />
+          <input
+            type="text"
+            id="player2Name"
+            placeholder="Nombre"
+          /><br /><br />
 
-            <label for="player3Name">Jugador-3 Nombre:</label><br>
-            <input type="text" id="player3Name" placeholder="Nombre"><br><br>
+          <label for="player3Name">Jugador-3 Nombre:</label><br />
+          <input
+            type="text"
+            id="player3Name"
+            placeholder="Nombre"
+          /><br /><br />
 
-            <label for="player4Name">Jugador-4 Nombre:</label><br>
-            <input type="text" id="player4Name" placeholder="Nombre"><br><br>
+          <label for="player4Name">Jugador-4 Nombre:</label><br />
+          <input
+            type="text"
+            id="player4Name"
+            placeholder="Nombre"
+          /><br /><br />
 
-            <label for="player5Name">Jugador-5 Nombre:</label><br>
-            <input type="text" id="player5Name" placeholder="Nombre"><br><br>            
+          <label for="player5Name">Jugador-5 Nombre:</label><br />
+          <input
+            type="text"
+            id="player5Name"
+            placeholder="Nombre"
+          /><br /><br />
 
-            <button class="btn btn-dark btnStart">Jugar</button>
+          <button class="btn btn-dark btnStart">Jugar</button>
+        </div>
+
+        <div class="fromText">
+          <h1 style="color: #54BAB9;">My Board Game <img src="/tablero/board-game.png" alt="" width="40px"></h1>
+          <p>
+            Bienvenido al juego <em>My Board Game</em>, para una mejor experiencia es
+            mejor jugarlo en PC 💻, si lo haces en Mobile📱 hazlo en modo horizontal,
+            el juego aún no está listo para jugar en línea, puedes jugarlo sin
+            conexión pero cada jugador tendrán que tomar su turno, en esta
+            pantalla elige el número de jugadores 2-5 y recuerda nombrar a cada
+            uno de los que elegiste.
+          </p>
+        </div>
       </div>
       <!-- board  -->
-      <img src="../tablero/deuda eterna tablero_scale.png" alt="" />
+      <img src="/tablero/tablero_scale.png" alt="" />
       <!-- players img -->
-      <img class="player player-1" src="../tablero/player1_img.png" alt="" />
-      <img class="player player-2" src="../tablero/player2_img.png" alt="" />
+      <img class="player player-1" src="/tablero/player1_img.png" alt="" width="45px"/>
+      <img class="player player-2" src="/tablero/player2_img.png" alt="" width="45px"/>
+      <img class="player player-3" src="/tablero/player3_img.png" alt="" width="45px"/>
+      <img class="player player-4" src="/tablero/player4_img.png" alt="" width="45px"/>
+      <img class="player player-5" src="/tablero/player5_img.png" alt="" width="45px"/>      
       <!-- showing who's turn  -->
       <h2 class="showTurn">
         Turno del jugador <span id="playerTurn">Player1</span>
@@ -93,32 +145,42 @@
       <div class="overlay"></div>
       <!-- buttoms -->
       <button class="btn btn-dark btnRollDice">🎲 Tirar Dado</button>
-      <button class="btn btn-dark btnUpgradeIndustry">🏘️ Construir Idustrias</button>
+      <button class="btn btn-dark btnUpgradeIndustry">
+        🏘️ Construir Idustrias
+      </button>
       <button class="btn btn-dark btnBuy hidden">👍 Comprar</button>
       <button class="btn btn-dark btnExit hidden">🚫 Salir</button>
       <button class="btn btn-dark btnPay hidden">💵 Pagar</button>
-      <button class="btn btn-dark btnUseGold hidden">🪙 Usar Barra de Oro</button>
+      <button class="btn btn-dark btnUseGold hidden">
+        🪙 Usar Barra de Oro
+      </button>
       <button class="btn btn-dark btnPiracy hidden">🏴‍☠️ Piratear</button>
-      <button class="btn btn-dark btnPiraceChain hidden">🏴‍☠️ Piratear Cadena</button>
+      <button class="btn btn-dark btnPiraceChain hidden">
+        🏴‍☠️ Piratear Cadena
+      </button>
       <!-- properties -->
 
       <!--  on show -->
       <img class="onshow hidden" src="../propiedades/azucar.png" alt="" />
-      
     </section>
     <section id="players">
-      <div class="row">
-        
-      </div>
+      <div class="row"></div>
     </section>
 
-    <section id="rules">
-
+    <section id="rules"><h2>Aqui Puedes Leer las reglas del juego</h2>
+      <a href="/reglas/rules.txt" rel="noopener noreferrer" target="_blank">Link a las Reglas</a>
+      
     </section>
-
+    
+    <!-- this scrip is only for init the game  -->
+    <script src="initScript.js"></script>
+    <!-- this is the maen game logic -->
     <script src="script.js"></script>
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

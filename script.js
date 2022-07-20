@@ -1,353 +1,26 @@
-//***********defining classes ***************
-class player {
-  constructor(
-    name,
-    propertyOn,
-    money,
-    goldBar,
-    mapPosition,
-    lastPosition,
-    img,
-    startTurn,
-    finalTurn,
-    notCollect,
-    interest20
-  ) {
-    this.name = name;
-    this.propertyOn = propertyOn;
-    this.money = money;
-    this.goldBar = goldBar;
-    this.mapPosition = mapPosition;
-    this.lastPosition = lastPosition;
-    this.img = img;
-    this.startTurn = startTurn;
-    this.finalTurn = finalTurn;
-    this.notCollect = notCollect;
-    this.interest20 = interest20;
-  }
-}
-
-class property {
-  constructor(
-    landValueSouth,
-    landValueNorth,
-    upgradeSouth1,
-    upgradeSouth2,
-    upgradeSouth3,
-    upgradeNorth1,
-    upgradeNorth2,
-    upgradeNorth3,
-    mapPositionSouth,
-    mapPositionNorth,
-    numOfUpSouth,
-    numOfUpNorth,
-    nameImg,
-    nameImgRes
-  ) {
-    this.nameImg = nameImg;
-    this.landValueSouth = landValueSouth;
-    this.landValueNorth = landValueNorth;
-    this.upgradeNorth1 = upgradeNorth1;
-    this.upgradeNorth2 = upgradeNorth2;
-    this.upgradeNorth3 = upgradeNorth3;
-    this.upgradeSouth1 = upgradeSouth1;
-    this.upgradeSouth2 = upgradeSouth2;
-    this.upgradeSouth3 = upgradeSouth3;
-    this.mapPositionSouth = mapPositionSouth;
-    this.mapPositionNorth = mapPositionNorth;
-    this.numOfUpSouth = numOfUpSouth;
-    this.numOfUpNorth = numOfUpNorth;
-    this.nameImgRes = nameImgRes;
-  }
-}
-//****************assigning classes *************
-
-//fmi count as a player
-const fmi = new player("FMI", [], 120000, 0, null, null, null, null, null);
-//players
-const player1 = new player(
-  "player1",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-1"),
-  true,
-  false,
-  false,
-  false
-);
-
-const player2 = new player(
-  "player2",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-2"),
-  false,
-  false,
-  false,
-  false
-);
-const player3 = new player(
-  "player3",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-2"),
-  false,
-  false,
-  false,
-  false
-);
-const player4 = new player(
-  "player4",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-2"),
-  false,
-  false,
-  false,
-  false
-);
-const player5 = new player(
-  "player5",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-2"),
-  false,
-  false,
-  false,
-  false
-);
-// property
-const azucar = new property(
-  100,
-  200,
-  150,
-  200,
-  300,
-  300,
-  400,
-  600,
-  1,
-  21,
-  1,
-  1,
-  "azucar.png",
-  "azucar_res.png"
-);
-const banano = new property(
-  150,
-  300,
-  250,
-  300,
-  450,
-  500,
-  600,
-  900,
-  2,
-  22,
-  0,
-  0,
-  "banano.png",
-  "banano_res.png"
-);
-const cacao = new property(
-  200,
-  400,
-  300,
-  400,
-  600,
-  600,
-  800,
-  1200,
-  3,
-  23,
-  1,
-  0,
-  "cacao.png",
-  "cacao_res.png"
-);
-const algodon = new property(
-  250,
-  500,
-  350,
-  500,
-  750,
-  750,
-  1000,
-  1500,
-  5,
-  25,
-  0,
-  0,
-  "algodon.png",
-  "algodon_res.png"
-);
-const tabaco = new property(
-  300,
-  600,
-  450,
-  600,
-  900,
-  900,
-  1200,
-  1800,
-  6,
-  26,
-  0,
-  0,
-  "tabaco.png",
-  "tabaco_res.png"
-);
-const cafe = new property(
-  350,
-  700,
-  500,
-  700,
-  1000,
-  1000,
-  1400,
-  2100,
-  7,
-  27,
-  0,
-  0,
-  "cafe.png",
-  "cafe_res.png"
-);
-const pesca = new property(
-  400,
-  800,
-  600,
-  800,
-  1200,
-  1200,
-  1600,
-  2400,
-  9,
-  29,
-  0,
-  0,
-  "pesca.png",
-  "pesca_res.png"
-);
-const ganado = new property(
-  500,
-  1000,
-  750,
-  1000,
-  1500,
-  1500,
-  2000,
-  3000,
-  11,
-  31,
-  0,
-  0,
-  "ganado.png",
-  "ganado_res.png"
-);
-const cobre = new property(
-  600,
-  1200,
-  900,
-  1200,
-  1800,
-  1800,
-  2400,
-  3600,
-  13,
-  33,
-  0,
-  0,
-  "cobre.png",
-  "cobre_res.png"
-);
-const estano = new property(
-  700,
-  1400,
-  1050,
-  1400,
-  2100,
-  2100,
-  2800,
-  4200,
-  14,
-  34,
-  0,
-  0,
-  "estano.png",
-  "estano_res.png"
-);
-const hierro = new property(
-  800,
-  1600,
-  1200,
-  1600,
-  2400,
-  2400,
-  3200,
-  4800,
-  15,
-  35,
-  0,
-  0,
-  "hierro.png",
-  "hierro_res.png"
-);
-const petroleo = new property(
-  1200,
-  2400,
-  1800,
-  2400,
-  3600,
-  3600,
-  4800,
-  7200,
-  17,
-  37,
-  0,
-  0,
-  "petroleo.png",
-  "petroleo_res.png"
-);
-
 // ***********defining html element**********
 // buttoms
-const BtnRollDice = document.querySelector(".btnRollDice");
-const btnUpgradeIndustry = document.querySelector(".btnUpgradeIndustry");
-const btnBuy = document.querySelector(".btnBuy");
-const btnExit = document.querySelector(".btnExit");
-const btnUseGold = document.querySelector(".btnUseGold");
-const btnPay = document.querySelector(".btnPay");
-const btnPiracy = document.querySelector(".btnPiracy");
-const btnPiraceChain = document.querySelector(".btnPiraceChain");
-const btnStart = document.querySelector(".btnStart");
+const BtnRollDice = document.querySelector('.btnRollDice');
+const btnUpgradeIndustry = document.querySelector('.btnUpgradeIndustry');
+const btnBuy = document.querySelector('.btnBuy');
+const btnExit = document.querySelector('.btnExit');
+const btnUseGold = document.querySelector('.btnUseGold');
+const btnPay = document.querySelector('.btnPay');
+const btnPiracy = document.querySelector('.btnPiracy');
+const btnPiraceChain = document.querySelector('.btnPiraceChain');
+
 // dices img
-const diceImg = document.querySelector(".diceImg");
-const diceImg2 = document.querySelector(".diceImg2");
-const diceImg3 = document.querySelector(".diceImg3");
-const diceImg4 = document.querySelector(".diceImg4");
+const diceImg = document.querySelector('.diceImg');
+const diceImg2 = document.querySelector('.diceImg2');
+const diceImg3 = document.querySelector('.diceImg3');
+const diceImg4 = document.querySelector('.diceImg4');
 // on show
-const onShow = document.querySelector(".onshow");
+const onShow = document.querySelector('.onshow');
 // text that show who's turn
-const showTextTurn = document.querySelector("#playerTurn");
+const showTextTurn = document.querySelector('#playerTurn');
 
 // overlay
-const overlay = document.querySelector(".overlay");
+const overlay = document.querySelector('.overlay');
 
 //*******game logic gloval variables*********
 
@@ -375,7 +48,7 @@ const properties = [
 ];
 // adding all properties to fmi propertyOn to star the game fmi had all property
 for (i of properties) {
-  fmi.propertyOn.push(i);
+  player1.propertyOn.push(i);
 }
 // number of player is going to be define lether by the user
 let numberOfPlayers;
@@ -384,61 +57,50 @@ let numberOfPlayers;
 let propertyPlay = [];
 
 // this variables are to know what is happening know (and buttom exit can know where to exit)
+let firstTurn = true;
 let buyingState;
 let piracyState;
 let payingState;
 let chainState;
 
 // ***********displays functions*********
-// start the game
-const startGame = function () {
-  numberOfPlayers = Number(document.querySelector("#numbersOfplayers").value);
-  player1.name = document.querySelector("#player1Name").value;
-  player2.name = document.querySelector("#player2Name").value;
-  player3.name = document.querySelector("#player3Name").value;
-  player4.name = document.querySelector("#player4Name").value;
-  player5.name = document.querySelector("#player5Name").value;
+function updateDisplay() {
+  for (let e = 0; e < players.length; e++) {
+    // update player money and goldbar
+    document.getElementById(
+      `money${players[e].displayImg}`
+    ).innerHTML = `Dinero💵 ${players[e].money}`;
+    document.getElementById(
+      `gold${players[e].displayImg}`
+    ).innerHTML = `Barras de Oro🪙 ${players[e].goldBar}`;
 
-  if (numberOfPlayers >= 2 && numberOfPlayers <= 5) {
-    for (let e = 0; e < numberOfPlayers; e++) {
-      players.push(listOfPlayer[e]);
+    // update property depent where they are
+    let playerP = document.getElementById(`prop${players[e].displayImg}`);
+    for (let p of players[e].propertyOn) {
+      let proId = document.getElementById(`${p.nameImg}`);
+      playerP.appendChild(proId);
+
+      let upSouth = document.getElementById(`upSouth${p.nameImg}`);
+      let upNorth = document.getElementById(`upNorth${p.nameImg}`);
+
+      if (p.numOfUpSouth == 1) {
+        upSouth.src = `/propiedades/upgrade_south1.png`;
+      } else if (p.numOfUpSouth == 2) {
+        upSouth.src = `/propiedades/upgrade_south2.png`;
+      } else if (p.numOfUpSouth == 3) {
+        upSouth.src = `/propiedades/upgrade_south3.png`;
+      }
+      if (p.numOfUpNorth == 1) {
+        upNorth.src = `/propiedades/upgrade_nort1.png`;
+      } else if (p.numOfUpNorth == 2) {
+        upNorth.src = `/propiedades/upgrade_nort2.png`;
+      } else if (p.numOfUpNorth == 3) {
+        upNorth.src = `/propiedades/upgrade_nort3.png`;
+      }
     }
-    document.querySelector(".formStar").classList.add("hidden");
-    overlay.classList.add("hidden");
-    displayPlayers();
-  }
-};
-
-// displays pllayer
-function displayPlayers() {
-  for (let e of players) {
-    let row = document.querySelector(".row");
-    let col = document.createElement("div");
-    let hName = document.createElement("h2");
-    let pMoney = document.createElement("p");
-    let pGold = document.createElement("p");
-
-    let money = document.createTextNode(`Dinero ${e.money}`);
-    let name = document.createTextNode(`${e.name}`);
-    let goldBars = document.createTextNode(`Barras de Oro ${e.goldBar}`);
-    hName.appendChild(name);
-    pMoney.appendChild(money);
-    pGold.appendChild(goldBars);
-    col.appendChild(hName);
-    col.appendChild(pMoney);
-    col.appendChild(pGold);
-    for (let i of e.propertyOn) {
-      let pImg = document.createElement("img");
-      pImg.src = `/propiedades/${i.nameImgRes}`;
-      pImg.style.padding = "0.2rem";
-
-      col.appendChild(pImg);
-    }
-    row.appendChild(col).classList.add("col", "col-lg-2", "col-sm-2");
   }
 }
-
-//**********games functions ***********
+//**********games funct ions ***********
 
 // when moving and check for dices
 const movePlayer = function (player) {
@@ -450,12 +112,12 @@ const movePlayer = function (player) {
   if (player.money < -10000) {
     dice3 = 1; //Math.floor(Math.random() * 6) + 1;
     diceImg3.src = `../tablero/dice-${dice3}.png`;
-    diceImg3.classList.remove("hidden");
+    diceImg3.classList.remove('hidden');
   }
   if (player.money < -20000) {
     dice4 = 0; //Math.floor(Math.random() * 6) + 1;
     diceImg4.src = `../tablero/dice-${dice4}.png`;
-    diceImg4.classList.remove("hidden");
+    diceImg4.classList.remove('hidden');
   }
 
   // chnage the dice img by dice value
@@ -507,8 +169,8 @@ const switchStarTurn = function () {
   if (players[activePlayer].startTurn) {
     players[activePlayer].startTurn = false;
     players[activePlayer].finalTurn = true;
-    BtnRollDice.classList.add("hidden");
-    btnUpgradeIndustry.classList.add("hidden");
+    BtnRollDice.classList.add('hidden');
+    btnUpgradeIndustry.classList.add('hidden');
   }
 };
 // chnage final turn to next player star turn and change active player
@@ -521,7 +183,7 @@ const switchActivePlayer = function () {
     for (let a of players[activePlayer].propertyOn) {
       fmi.propertyOn.push(a);
     }
-    players[activePlayer].img.classList.add("hidden");
+    players[activePlayer].img.classList.add('hidden');
     players[activePlayer].startTurn = false;
     let removeIndex = players.indexOf(players[activePlayer]);
     players.splice(removeIndex, 1);
@@ -535,17 +197,16 @@ const switchActivePlayer = function () {
       activePlayer = 1;
     }
     showTextTurn.textContent = players[activePlayer].name;
-    BtnRollDice.classList.remove("hidden");
-    btnUpgradeIndustry.classList.remove("hidden");
-    diceImg3.classList.add("hidden");
-    diceImg4.classList.add("hidden");
+    BtnRollDice.classList.remove('hidden');
+    btnUpgradeIndustry.classList.remove('hidden');
+    diceImg3.classList.add('hidden');
+    diceImg4.classList.add('hidden');
     if (numberOfPlayers === 1) {
       alert(
         `wow wow jugador ${players[activePlayer].name} gana el juego bien echo`
       );
     }
   } else {
-    console.log("ok");
     if (players[activePlayer].finalTurn) {
       //change final turn of current player to false
       players[activePlayer].finalTurn = false;
@@ -559,11 +220,17 @@ const switchActivePlayer = function () {
       if (activePlayer >= numberOfPlayers + 1) {
         activePlayer = 1;
       }
-      showTextTurn.textContent = players[activePlayer].name;
-      BtnRollDice.classList.remove("hidden");
-      btnUpgradeIndustry.classList.remove("hidden");
-      diceImg3.classList.add("hidden");
-      diceImg4.classList.add("hidden");
+
+      showTextTurn.innerHTML = `${players[activePlayer].name} <img
+      src="../tablero/${players[activePlayer].displayImg}"
+      
+      alt="playerImg" width="25px"
+    />`;
+
+      BtnRollDice.classList.remove('hidden');
+      btnUpgradeIndustry.classList.remove('hidden');
+      diceImg3.classList.add('hidden');
+      diceImg4.classList.add('hidden');
     }
   }
 };
@@ -615,8 +282,8 @@ const rollingOnProperty = function () {
       let proPlay = properties[i];
       // if property on fmi
       if (fmi.propertyOn.indexOf(proPlay) !== -1) {
-        btnBuy.classList.remove("hidden");
-        btnExit.classList.remove("hidden");
+        btnBuy.classList.remove('hidden');
+        btnExit.classList.remove('hidden');
         buyingState = true;
         // always when a property need action in another function it goes to propertyPlay
         propertyPlay.push(properties[i]);
@@ -631,9 +298,9 @@ const rollingOnProperty = function () {
         players[activePlayer].propertyOn.indexOf(proPlay) === -1 &&
         fmi.propertyOn.indexOf(proPlay) === -1
       ) {
-        btnPay.classList.remove("hidden");
+        btnPay.classList.remove('hidden');
         if (players[activePlayer].goldBar > 0) {
-          btnUseGold.classList.remove("hidden");
+          btnUseGold.classList.remove('hidden');
         }
         propertyPlay.push(proPlay);
       }
@@ -644,9 +311,9 @@ const rollingOnProperty = function () {
       let proPlay = properties[i];
       // if property on fmi
       if (fmi.propertyOn.indexOf(proPlay) !== -1) {
-        btnPay.classList.remove("hidden");
+        btnPay.classList.remove('hidden');
         if (players[activePlayer].goldBar > 0) {
-          btnUseGold.classList.remove("hidden");
+          btnUseGold.classList.remove('hidden');
         }
         // always when a property need action in another function it goes to propertyPlay
         propertyPlay.push(proPlay);
@@ -661,9 +328,9 @@ const rollingOnProperty = function () {
         players[activePlayer].propertyOn.indexOf(proPlay) === -1 &&
         fmi.propertyOn.indexOf(proPlay) === -1
       ) {
-        btnPay.classList.remove("hidden");
+        btnPay.classList.remove('hidden');
         if (players[activePlayer].goldBar > 0) {
-          btnUseGold.classList.remove("hidden");
+          btnUseGold.classList.remove('hidden');
         }
         propertyPlay.push(proPlay);
       }
@@ -677,26 +344,73 @@ const rollDice = function () {
   if (players[activePlayer].startTurn) {
     movePlayer(players[activePlayer]);
     switchStarTurn();
+
     // all options that happen when is final turn
   }
   if (players[activePlayer].finalTurn) {
     rollingOnProperty();
   }
+  updateDisplay();
 };
+// upgrading
+//geting all name of property that you have if dont have return false
 
+function checkOwnProperty() {
+  let ownProperties = [];
+  for (let a of players[activePlayer].propertyOn) {
+    ownProperties.push(a.name);
+    ownProperties.push(' ');
+  }
+  if (ownProperties) {
+    return ownProperties.toString();
+  } else return false;
+}
+// removin all accents
+accentsTidy = function (s) {
+  var r = s.toLowerCase();
+  r = r.replace(new RegExp(/\s/g), '');
+  r = r.replace(new RegExp(/[àáâãäå]/g), 'a');
+  r = r.replace(new RegExp(/æ/g), 'ae');
+  r = r.replace(new RegExp(/ç/g), 'c');
+  r = r.replace(new RegExp(/[èéêë]/g), 'e');
+  r = r.replace(new RegExp(/[ìíîï]/g), 'i');
+  r = r.replace(new RegExp(/ñ/g), 'n');
+  r = r.replace(new RegExp(/[òóôõö]/g), 'o');
+  r = r.replace(new RegExp(/œ/g), 'oe');
+  r = r.replace(new RegExp(/[ùúûü]/g), 'u');
+  r = r.replace(new RegExp(/[ýÿ]/g), 'y');
+  r = r.replace(new RegExp(/\W/g), '');
+  return r;
+};
+const upgrade = function () {
+  if (checkOwnProperty()) {
+    let whatProperty = prompt(
+      `por favor ingrese cual de sus propiedades (no tildes)${checkOwnProperty()}`
+    );
+    for (let p of players[activePlayer].propertyOn) {
+      ////// i need to make a function to upgrade depent of the upgrade
+      if (accentsTidy(whatProperty) == p.name) {
+        paying(fmi, 200, 1);
+        p.numOfUpSouth = 1;
+        p.numOfUpNorth = 1;
+      }
+    }
+  }
+  updateDisplay();
+};
 // buying
 function exitBuying() {
   propertyPlay = [];
-  btnBuy.classList.add("hidden");
-  btnExit.classList.add("hidden");
+  btnBuy.classList.add('hidden');
+  btnExit.classList.add('hidden');
   buyingState = false;
   switchActivePlayer();
 }
 // exit after pay
 function exitPaying() {
   propertyPlay = [];
-  btnPay.classList.add("hidden");
-  btnUseGold.classList.add("hidden");
+  btnPay.classList.add('hidden');
+  btnUseGold.classList.add('hidden');
   switchActivePlayer();
 }
 
@@ -706,6 +420,7 @@ const buying = function () {
   getProp(fmi, propertyPlay[0]);
   // adding hidden class to buttoms and
   exitBuying();
+  updateDisplay();
 };
 
 // this function first check if player had chain and if had a return value of total change and also return what was the others chain property
@@ -856,6 +571,7 @@ const payToAnotherPlayer = function () {
       }
     }
   }
+  updateDisplay();
 };
 // pay to another player with gold bar
 const goldToAnotherPlayer = function () {
@@ -893,27 +609,28 @@ const goldToAnotherPlayer = function () {
       }
     }
   }
+  updateDisplay();
 };
 // pirated property
 
 function exitPiracy() {
   propertyPlay = [];
-  btnPiracy.classList.add("hidden");
-  btnExit.classList.add("hidden");
-  btnPiraceChain.classList.add("hidden");
+  btnPiracy.classList.add('hidden');
+  btnExit.classList.add('hidden');
+  btnPiraceChain.classList.add('hidden');
   chainState = false;
   piracyState = false;
   switchActivePlayer();
 }
 function enterPiracy() {
-  btnPay.classList.add("hidden");
-  btnUseGold.classList.add("hidden");
-  btnPiracy.classList.remove("hidden");
-  btnExit.classList.remove("hidden");
+  btnPay.classList.add('hidden');
+  btnUseGold.classList.add('hidden');
+  btnPiracy.classList.remove('hidden');
+  btnExit.classList.remove('hidden');
   piracyState = true;
 }
 function enterPiracyChain() {
-  btnPiraceChain.classList.remove("hidden");
+  btnPiraceChain.classList.remove('hidden');
   chainState = true;
 }
 function toalValuePlusUpgrade(proPlay) {
@@ -966,6 +683,7 @@ const piracying = function () {
       exitPiracy();
     }
   }
+  updateDisplay();
 };
 
 const piracyingChain = function () {
@@ -988,6 +706,7 @@ const piracyingChain = function () {
     }
   }
   exitPiracy();
+  updateDisplay();
 };
 //exit
 const exit = function () {
@@ -1001,18 +720,20 @@ const exit = function () {
   if (piracyState) {
     exitPiracy();
   }
+  updateDisplay();
 };
 
 // ************buttoms actions**********
-btnStart.addEventListener("click", startGame);
-BtnRollDice.addEventListener("click", rollDice);
-btnBuy.addEventListener("click", buying);
-btnPay.addEventListener("click", payToAnotherPlayer);
-btnUseGold.addEventListener("click", goldToAnotherPlayer);
-btnPiracy.addEventListener("click", piracying);
-btnPiraceChain.addEventListener("click", piracyingChain);
-btnExit.addEventListener("click", exit);
-// btnUpgradeIndustry.addEventListener("click");
+
+BtnRollDice.addEventListener('click', rollDice);
+btnBuy.addEventListener('click', buying);
+btnPay.addEventListener('click', payToAnotherPlayer);
+btnUseGold.addEventListener('click', goldToAnotherPlayer);
+btnPiracy.addEventListener('click', piracying);
+btnPiraceChain.addEventListener('click', piracyingChain);
+btnExit.addEventListener('click', exit);
+
+btnUpgradeIndustry.addEventListener('click', upgrade);
 
 //this function is to get position by clicking in the document
 
