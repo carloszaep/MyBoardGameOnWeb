@@ -8,6 +8,7 @@ const btnUseGold = document.querySelector('.btnUseGold');
 const btnPay = document.querySelector('.btnPay');
 const btnPiracy = document.querySelector('.btnPiracy');
 const btnPiraceChain = document.querySelector('.btnPiraceChain');
+const btnExitOnshow = document.querySelector('.btnExitOnshow ');
 
 // dices img
 const diceImg = document.querySelector('.diceImg');
@@ -105,8 +106,8 @@ function updateDisplay() {
 // when moving and check for dices
 const movePlayer = function (player) {
   // dices
-  let dice = 1; // Math.floor(Math.random() * 6) + 1;
-  let dice2 = 1; // Math.floor(Math.random() * 6) + 1;
+  let dice = 8; // Math.floor(Math.random() * 6) + 1;
+  let dice2 = 8; // Math.floor(Math.random() * 6) + 1;
   let dice3 = 0;
   let dice4 = 0;
   if (player.money < -10000) {
@@ -336,7 +337,18 @@ const rollingOnProperty = function () {
       }
     }
 };
-
+// rolling on soli
+const rollingOnSoli = function () {
+  let player = players[activePlayer];
+  if (
+    player.mapPosition === 4 ||
+    player.mapPosition === 16 ||
+    player.mapPosition === 32
+  ) {
+    // need to continue with all soli cards
+    switchActivePlayer();
+  }
+};
 //**********functions to put in a event listener*************
 // roll dice
 const rollDice = function () {
@@ -349,6 +361,7 @@ const rollDice = function () {
   }
   if (players[activePlayer].finalTurn) {
     rollingOnProperty();
+    rollingOnSoli();
   }
   updateDisplay();
 };
@@ -390,9 +403,31 @@ const upgrade = function () {
     for (let p of players[activePlayer].propertyOn) {
       ////// i need to make a function to upgrade depent of the upgrade
       if (accentsTidy(whatProperty) == p.name) {
-        paying(fmi, 200, 1);
-        p.numOfUpSouth = 1;
-        p.numOfUpNorth = 1;
+        if (p.numOfUpSouth === 0) {
+          paying(fmi, p.upgradeSouth1, 1);
+          p.numOfUpSouth += 1;
+          break;
+        } else if (p.numOfUpSouth === 1 && p.numOfUpNorth === 0) {
+          paying(fmi, p.upgradeNorth1, 1);
+          p.numOfUpNorth += 1;
+          break;
+        } else if (p.numOfUpSouth === 1) {
+          paying(fmi, p.upgradeSouth2, 1);
+          p.numOfUpSouth += 1;
+          break;
+        } else if (p.numOfUpSouth === 2 && p.numOfUpNorth === 1) {
+          paying(fmi, p.upgradeNorth2, 1);
+          p.numOfUpNorth += 1;
+          break;
+        } else if (p.numOfUpSouth === 2) {
+          paying(fmi, p.upgradeSouth3, 1);
+          p.numOfUpSouth += 1;
+          break;
+        } else if (p.numOfUpSouth === 3 && p.numOfUpNorth === 2) {
+          paying(fmi, p.upgradeNorth3, 1);
+          p.numOfUpNorth += 1;
+          break;
+        }
       }
     }
   }
@@ -722,6 +757,11 @@ const exit = function () {
   }
   updateDisplay();
 };
+const ExitOnshow = function () {
+  overlay.classList.add('hidden');
+  onShow.classList.add('hidden');
+  btnExitOnshow.classList.add('hidden');
+};
 
 // ************buttoms actions**********
 
@@ -732,7 +772,7 @@ btnUseGold.addEventListener('click', goldToAnotherPlayer);
 btnPiracy.addEventListener('click', piracying);
 btnPiraceChain.addEventListener('click', piracyingChain);
 btnExit.addEventListener('click', exit);
-
+btnExitOnshow.addEventListener('click', ExitOnshow);
 btnUpgradeIndustry.addEventListener('click', upgrade);
 
 //this function is to get position by clicking in the document

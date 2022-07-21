@@ -375,6 +375,14 @@ const startGame = function () {
     }
     document.querySelector('.formStar').classList.add('hidden');
     overlay.classList.add('hidden');
+    showTextTurn.innerHTML = `${players[activePlayer].name} <img
+      src="../tablero/${players[activePlayer].displayImg}"
+      
+      alt="playerImg" width="25px"
+    />`;
+    for (let e = 1; e < players.length; e++) {
+      players[e].money = (Math.floor(Math.random() * 6) + 1) * 1000;
+    }
     displayPlayers();
     firstTurn = false;
   }
@@ -422,6 +430,12 @@ function displayPlayers() {
       pImg.src = `/propiedades/${i.nameImgRes}`;
       pImg.style.paddingLeft = '0.3rem';
       pImg.style.width = '60px';
+      pImg.addEventListener('click', () => {
+        overlay.classList.remove('hidden');
+        onShow.classList.remove('hidden');
+        btnExitOnshow.classList.remove('hidden');
+        onShow.src = `/propiedades/${i.nameImg}`;
+      });
 
       upImgNort.setAttribute('id', `upNorth${i.nameImg}`);
       upImgNort.style.width = '10px';

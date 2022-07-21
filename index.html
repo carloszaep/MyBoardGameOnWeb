@@ -97,25 +97,53 @@
         </div>
 
         <div class="fromText">
-          <h1 style="color: #54BAB9;">My Board Game <img src="/tablero/board-game.png" alt="" width="40px"></h1>
+          <h1 style="color: #54bab9">
+            My Board Game
+            <img src="/tablero/board-game.png" alt="" width="40px" />
+          </h1>
           <p>
-            Bienvenido al juego <em>My Board Game</em>, para una mejor experiencia es
-            mejor jugarlo en PC 💻, si lo haces en Mobile📱 hazlo en modo horizontal,
-            el juego aún no está listo para jugar en línea, puedes jugarlo sin
-            conexión pero cada jugador tendrán que tomar su turno, en esta
-            pantalla elige el número de jugadores 2-5 y recuerda nombrar a cada
-            uno de los que elegiste.
+            Bienvenido al juego <em>My Board Game</em>, para una mejor
+            experiencia es mejor jugarlo en PC 💻, si lo haces en Mobile📱 hazlo
+            en modo horizontal, puedes jugarlo sin conexión cada jugador tendrán
+            que tomar su turno en la misma pantalla elige el número de jugadores
+            2-5 y recuerda nombrar a cada uno, al darle jugar cada jugador
+            empieza con 1000 - 6000 al azar. Disfrutalo
           </p>
         </div>
       </div>
       <!-- board  -->
       <img src="/tablero/tablero_scale.png" alt="" />
       <!-- players img -->
-      <img class="player player-1" src="/tablero/player1_img.png" alt="" width="45px"/>
-      <img class="player player-2" src="/tablero/player2_img.png" alt="" width="45px"/>
-      <img class="player player-3" src="/tablero/player3_img.png" alt="" width="45px"/>
-      <img class="player player-4" src="/tablero/player4_img.png" alt="" width="45px"/>
-      <img class="player player-5" src="/tablero/player5_img.png" alt="" width="45px"/>      
+      <img
+        class="player player-1"
+        src="/tablero/player1_img.png"
+        alt=""
+        width="45px"
+      />
+      <img
+        class="player player-2"
+        src="/tablero/player2_img.png"
+        alt=""
+        width="45px"
+      />
+      <img
+        class="player player-3"
+        src="/tablero/player3_img.png"
+        alt=""
+        width="45px"
+      />
+      <img
+        class="player player-4"
+        src="/tablero/player4_img.png"
+        alt=""
+        width="45px"
+      />
+      <img
+        class="player player-5"
+        src="/tablero/player5_img.png"
+        alt=""
+        width="45px"
+      />
       <!-- showing who's turn  -->
       <h2 class="showTurn">
         Turno del jugador <span id="playerTurn">Player1</span>
@@ -162,16 +190,20 @@
 
       <!--  on show -->
       <img class="onshow hidden" src="../propiedades/azucar.png" alt="" />
+      <!-- buttom to exit on show  -->
+      <button class="btn-close btnExitOnshow hidden"></button>
     </section>
     <section id="players">
       <div class="row"></div>
     </section>
 
-    <section id="rules"><h2>Aqui Puedes Leer las reglas del juego</h2>
-      <a href="/reglas/rules.txt" rel="noopener noreferrer" target="_blank">Link a las Reglas</a>
-      
+    <section id="rules">
+      <h2>Aqui Puedes Leer las reglas del juego</h2>
+      <a href="/reglas/rules.txt" rel="noopener noreferrer" target="_blank"
+        >Link a las Reglas</a
+      >
     </section>
-    
+
     <!-- this scrip is only for init the game  -->
     <script src="initScript.js"></script>
     <!-- this is the maen game logic -->

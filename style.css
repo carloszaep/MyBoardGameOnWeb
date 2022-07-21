@@ -153,12 +153,19 @@ body {
   right: 500px;
   top: 0;
 }
+.btnExitOnshow {
+  width: 100px;
+  position: absolute;
+  z-index: 15;
+  right: 500px;
+  top: 0;
+}
 /* show who's turn  */
 .showTurn {
   position: absolute;
   z-index: 5;
-  right: 620px;
-  top: 300px;
+  right: 800px;
+  top: 500px;
 }
 
 /* hiden class */
