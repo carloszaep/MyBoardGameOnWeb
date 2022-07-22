@@ -1,4 +1,6 @@
 
+
+
 My Board Game
 
 Se trata de un juego de mesa donde los participantes juegan el papel de gobiernos del Tercer Mundo cuyo objetivo es derrotar al Fondo Moneta- rio Internacional (FMI).
@@ -37,7 +39,7 @@ SOLIDARIDAD: Se barajan antes de comenzar el juego y se colocan boca abajo en do
 
 CONDICIONES FMI: Se barajan y colocan igual que SOLIDARIDAD, estas tarjetas solo se destapan cuando el jugador tiene deudas con el FMI y cae en estas casillas.
 
-AYUDA SOLIDARIA PARA EL DESARROLLO: Cuando un jugador cae en esta casilla, puede en ese turno hacer inversión en industrias nacionales o de exportación a mitad de precio en los terrenos que posea.
+AYUDA SOLIDARIA PARA EL DESARROLLO: Cuando un jugador cae en esta casilla, puede en ese turno hacer una inversión en industrias nacionales o de exportación a mitad de precio en los terrenos que posea.
 
 FUGA DE CAPITALES: Cuando el jugador caiga en esta casilla tira un da. do. Cada punto equivale a $1000 que debe entregar al FMI.
 

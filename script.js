@@ -1,27 +1,27 @@
 // ***********defining html element**********
 // buttoms
-const BtnRollDice = document.querySelector('.btnRollDice');
-const btnUpgradeIndustry = document.querySelector('.btnUpgradeIndustry');
-const btnBuy = document.querySelector('.btnBuy');
-const btnExit = document.querySelector('.btnExit');
-const btnUseGold = document.querySelector('.btnUseGold');
-const btnPay = document.querySelector('.btnPay');
-const btnPiracy = document.querySelector('.btnPiracy');
-const btnPiraceChain = document.querySelector('.btnPiraceChain');
-const btnExitOnshow = document.querySelector('.btnExitOnshow ');
+const BtnRollDice = document.querySelector(".btnRollDice");
+const btnUpgradeIndustry = document.querySelector(".btnUpgradeIndustry");
+const btnBuy = document.querySelector(".btnBuy");
+const btnExit = document.querySelector(".btnExit");
+const btnUseGold = document.querySelector(".btnUseGold");
+const btnPay = document.querySelector(".btnPay");
+const btnPiracy = document.querySelector(".btnPiracy");
+const btnPiraceChain = document.querySelector(".btnPiraceChain");
+const btnExitOnshow = document.querySelector(".btnExitOnshow ");
 
 // dices img
-const diceImg = document.querySelector('.diceImg');
-const diceImg2 = document.querySelector('.diceImg2');
-const diceImg3 = document.querySelector('.diceImg3');
-const diceImg4 = document.querySelector('.diceImg4');
+const diceImg = document.querySelector(".diceImg");
+const diceImg2 = document.querySelector(".diceImg2");
+const diceImg3 = document.querySelector(".diceImg3");
+const diceImg4 = document.querySelector(".diceImg4");
 // on show
-const onShow = document.querySelector('.onshow');
+const onShow = document.querySelector(".onshow");
 // text that show who's turn
-const showTextTurn = document.querySelector('#playerTurn');
+const showTextTurn = document.querySelector("#playerTurn");
 
 // overlay
-const overlay = document.querySelector('.overlay');
+const overlay = document.querySelector(".overlay");
 
 //*******game logic gloval variables*********
 
@@ -106,19 +106,19 @@ function updateDisplay() {
 // when moving and check for dices
 const movePlayer = function (player) {
   // dices
-  let dice = 8; // Math.floor(Math.random() * 6) + 1;
-  let dice2 = 8; // Math.floor(Math.random() * 6) + 1;
+  let dice = 4; // Math.floor(Math.random() * 6) + 1;
+  let dice2 = 4; // Math.floor(Math.random() * 6) + 1;
   let dice3 = 0;
   let dice4 = 0;
   if (player.money < -10000) {
     dice3 = 1; //Math.floor(Math.random() * 6) + 1;
     diceImg3.src = `../tablero/dice-${dice3}.png`;
-    diceImg3.classList.remove('hidden');
+    diceImg3.classList.remove("hidden");
   }
   if (player.money < -20000) {
     dice4 = 0; //Math.floor(Math.random() * 6) + 1;
     diceImg4.src = `../tablero/dice-${dice4}.png`;
-    diceImg4.classList.remove('hidden');
+    diceImg4.classList.remove("hidden");
   }
 
   // chnage the dice img by dice value
@@ -170,10 +170,11 @@ const switchStarTurn = function () {
   if (players[activePlayer].startTurn) {
     players[activePlayer].startTurn = false;
     players[activePlayer].finalTurn = true;
-    BtnRollDice.classList.add('hidden');
-    btnUpgradeIndustry.classList.add('hidden');
+    BtnRollDice.classList.add("hidden");
+    btnUpgradeIndustry.classList.add("hidden");
   }
 };
+
 // chnage final turn to next player star turn and change active player
 const switchActivePlayer = function () {
   // eliminating players if money < -30000
@@ -184,7 +185,7 @@ const switchActivePlayer = function () {
     for (let a of players[activePlayer].propertyOn) {
       fmi.propertyOn.push(a);
     }
-    players[activePlayer].img.classList.add('hidden');
+    players[activePlayer].img.classList.add("hidden");
     players[activePlayer].startTurn = false;
     let removeIndex = players.indexOf(players[activePlayer]);
     players.splice(removeIndex, 1);
@@ -198,10 +199,10 @@ const switchActivePlayer = function () {
       activePlayer = 1;
     }
     showTextTurn.textContent = players[activePlayer].name;
-    BtnRollDice.classList.remove('hidden');
-    btnUpgradeIndustry.classList.remove('hidden');
-    diceImg3.classList.add('hidden');
-    diceImg4.classList.add('hidden');
+    BtnRollDice.classList.remove("hidden");
+    btnUpgradeIndustry.classList.remove("hidden");
+    diceImg3.classList.add("hidden");
+    diceImg4.classList.add("hidden");
     if (numberOfPlayers === 1) {
       alert(
         `wow wow jugador ${players[activePlayer].name} gana el juego bien echo`
@@ -214,24 +215,59 @@ const switchActivePlayer = function () {
       // var that take the next player so can put as argument to reflect next player
       let nextPlayer =
         activePlayer + 1 > numberOfPlayers ? 1 : activePlayer + 1;
-      players[nextPlayer].startTurn = true;
-      // change active player by next one
-      activePlayer++;
-      // if active player exceeds numbers of player star for 1 again
-      if (activePlayer >= numberOfPlayers + 1) {
-        activePlayer = 1;
-      }
+      // check if next player had no play on
+      if (players[nextPlayer].noPlay) {
+        // see who is going next the player can't play
+        let nextNextPlayer =
+          nextPlayer + 1 > numberOfPlayers ? 1 : nextPlayer + 1;
+        // making that player active
 
-      showTextTurn.innerHTML = `${players[activePlayer].name} <img
+        players[nextPlayer].turnWOplayCount++;
+
+        // counting the turns without playing and if 2 can play the other turn
+        if (players[nextPlayer].turnWOplayCount === 2) {
+          players[nextPlayer].noPlay = false;
+          players[nextPlayer].notCollect = false;
+          players[nextPlayer].turnWOplayCount = 0;
+        }
+        players[nextNextPlayer].startTurn = true;
+
+        activePlayer += 2;
+        if (activePlayer >= numberOfPlayers + 1) {
+          activePlayer = 1;
+        }
+        // showing player's name and img in turn
+        showTextTurn.innerHTML = `${players[activePlayer].name} <img
       src="../tablero/${players[activePlayer].displayImg}"
       
       alt="playerImg" width="25px"
     />`;
 
-      BtnRollDice.classList.remove('hidden');
-      btnUpgradeIndustry.classList.remove('hidden');
-      diceImg3.classList.add('hidden');
-      diceImg4.classList.add('hidden');
+        BtnRollDice.classList.remove("hidden");
+        btnUpgradeIndustry.classList.remove("hidden");
+        diceImg3.classList.add("hidden");
+        diceImg4.classList.add("hidden");
+      } else {
+        players[nextPlayer].startTurn = true;
+        // change active player by next one
+        activePlayer++;
+        // if active player exceeds numbers of player star for 1 again
+        if (activePlayer >= numberOfPlayers + 1) {
+          activePlayer = 1;
+        }
+
+        // showing player's name and img in turn
+        showTextTurn.innerHTML = `${players[activePlayer].name} <img
+      src="../tablero/${players[activePlayer].displayImg}"
+      
+      alt="playerImg" width="25px"
+    />`;
+
+        BtnRollDice.classList.remove("hidden");
+        btnUpgradeIndustry.classList.remove("hidden");
+        diceImg3.classList.add("hidden");
+        diceImg4.classList.add("hidden");
+      }
     }
   }
 };
@@ -263,16 +299,16 @@ function getPropChain(whoGive, property) {
   players[activePlayer].propertyOn.push(chain1);
   players[activePlayer].propertyOn.push(property);
   // only add and removing chain2 if prop is no equal to 6 or 7 props
-  if ((property !== properties[6], properties[7])) {
+  if (property !== pesca || property !== ganado) {
     players[activePlayer].propertyOn.push(chain2);
     let removeIndex = whoGive.propertyOn.indexOf(chain2);
     whoGive.propertyOn.splice(removeIndex, 1);
   }
   // removing actal prop and chin1
-  let removeIndex = whoGive.propertyOn.indexOf(property);
   let removeIndex2 = whoGive.propertyOn.indexOf(chain1);
   whoGive.propertyOn.splice(removeIndex2, 1);
-  whoGive.propertyOn.splice(removeIndex, 1);
+  let removeIndex3 = whoGive.propertyOn.indexOf(property);
+  whoGive.propertyOn.splice(removeIndex3, 1);
 }
 
 // rolling on property
@@ -283,8 +319,8 @@ const rollingOnProperty = function () {
       let proPlay = properties[i];
       // if property on fmi
       if (fmi.propertyOn.indexOf(proPlay) !== -1) {
-        btnBuy.classList.remove('hidden');
-        btnExit.classList.remove('hidden');
+        btnBuy.classList.remove("hidden");
+        btnExit.classList.remove("hidden");
         buyingState = true;
         // always when a property need action in another function it goes to propertyPlay
         propertyPlay.push(properties[i]);
@@ -299,56 +335,51 @@ const rollingOnProperty = function () {
         players[activePlayer].propertyOn.indexOf(proPlay) === -1 &&
         fmi.propertyOn.indexOf(proPlay) === -1
       ) {
-        btnPay.classList.remove('hidden');
+        btnPay.classList.remove("hidden");
         if (players[activePlayer].goldBar > 0) {
-          btnUseGold.classList.remove('hidden');
+          btnUseGold.classList.remove("hidden");
         }
         propertyPlay.push(proPlay);
       }
-    } else if (
       // when rolling on property on north
+    } else if (
       players[activePlayer].mapPosition === properties[i].mapPositionNorth
     ) {
       let proPlay = properties[i];
       // if property on fmi
       if (fmi.propertyOn.indexOf(proPlay) !== -1) {
-        btnPay.classList.remove('hidden');
+        btnPay.classList.remove("hidden");
         if (players[activePlayer].goldBar > 0) {
-          btnUseGold.classList.remove('hidden');
+          btnUseGold.classList.remove("hidden");
         }
         // always when a property need action in another function it goes to propertyPlay
         propertyPlay.push(proPlay);
       }
       // if property onw by actual player
       if (players[activePlayer].propertyOn.indexOf(proPlay) !== -1) {
-        collecting(fmi, proPlay.landValueNorth, proPlay.numOfUpNorth);
-        switchActivePlayer();
-        break;
+        if (players[activePlayer].notCollect) {
+          alert("usted no cobra nada hasta que llegue al FMI");
+          switchActivePlayer();
+          break;
+        } else {
+          collecting(fmi, proPlay.landValueNorth, proPlay.numOfUpNorth);
+          switchActivePlayer();
+          break;
+        }
       }
       if (
         players[activePlayer].propertyOn.indexOf(proPlay) === -1 &&
         fmi.propertyOn.indexOf(proPlay) === -1
       ) {
-        btnPay.classList.remove('hidden');
+        btnPay.classList.remove("hidden");
         if (players[activePlayer].goldBar > 0) {
-          btnUseGold.classList.remove('hidden');
+          btnUseGold.classList.remove("hidden");
         }
         propertyPlay.push(proPlay);
       }
     }
 };
-// rolling on soli
-const rollingOnSoli = function () {
-  let player = players[activePlayer];
-  if (
-    player.mapPosition === 4 ||
-    player.mapPosition === 16 ||
-    player.mapPosition === 32
-  ) {
-    // need to continue with all soli cards
-    switchActivePlayer();
-  }
-};
+
 //**********functions to put in a event listener*************
 // roll dice
 const rollDice = function () {
@@ -359,46 +390,82 @@ const rollDice = function () {
 
     // all options that happen when is final turn
   }
+  let chechIfPlayerFinish = activePlayer;
   if (players[activePlayer].finalTurn) {
     rollingOnProperty();
-    rollingOnSoli();
+
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingOnSoli();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingOnFmi();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingNacional();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingOn10();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingMilitaryCoup();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingCapitalFlight();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingOnFMIspace39();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingOnSpace32();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingSpace30();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingSpace38();
+    }
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingSpace20Barrier();
+    }
   }
   updateDisplay();
 };
 // upgrading
 //geting all name of property that you have if dont have return false
 
-function checkOwnProperty() {
+function checkOwnProperty(player) {
   let ownProperties = [];
-  for (let a of players[activePlayer].propertyOn) {
+  for (let a of player.propertyOn) {
     ownProperties.push(a.name);
-    ownProperties.push(' ');
+    ownProperties.push(" ");
   }
   if (ownProperties) {
     return ownProperties.toString();
   } else return false;
 }
-// removin all accents
+// removing accents from user input
 accentsTidy = function (s) {
   var r = s.toLowerCase();
-  r = r.replace(new RegExp(/\s/g), '');
-  r = r.replace(new RegExp(/[àáâãäå]/g), 'a');
-  r = r.replace(new RegExp(/æ/g), 'ae');
-  r = r.replace(new RegExp(/ç/g), 'c');
-  r = r.replace(new RegExp(/[èéêë]/g), 'e');
-  r = r.replace(new RegExp(/[ìíîï]/g), 'i');
-  r = r.replace(new RegExp(/ñ/g), 'n');
-  r = r.replace(new RegExp(/[òóôõö]/g), 'o');
-  r = r.replace(new RegExp(/œ/g), 'oe');
-  r = r.replace(new RegExp(/[ùúûü]/g), 'u');
-  r = r.replace(new RegExp(/[ýÿ]/g), 'y');
-  r = r.replace(new RegExp(/\W/g), '');
+  r = r.replace(new RegExp(/\s/g), "");
+  r = r.replace(new RegExp(/[àáâãäå]/g), "a");
+  r = r.replace(new RegExp(/æ/g), "ae");
+  r = r.replace(new RegExp(/ç/g), "c");
+  r = r.replace(new RegExp(/[èéêë]/g), "e");
+  r = r.replace(new RegExp(/[ìíîï]/g), "i");
+  r = r.replace(new RegExp(/ñ/g), "n");
+  r = r.replace(new RegExp(/[òóôõö]/g), "o");
+  r = r.replace(new RegExp(/œ/g), "oe");
+  r = r.replace(new RegExp(/[ùúûü]/g), "u");
+  r = r.replace(new RegExp(/[ýÿ]/g), "y");
+  r = r.replace(new RegExp(/\W/g), "");
   return r;
 };
 const upgrade = function () {
-  if (checkOwnProperty()) {
+  if (checkOwnProperty(players[activePlayer])) {
     let whatProperty = prompt(
-      `por favor ingrese cual de sus propiedades (no tildes)${checkOwnProperty()}`
+      `por favor ingrese cual de sus propiedades (no tildes)${checkOwnProperty(
+        players[activePlayer]
+      )}`
     );
     for (let p of players[activePlayer].propertyOn) {
       ////// i need to make a function to upgrade depent of the upgrade
@@ -436,16 +503,16 @@ const upgrade = function () {
 // buying
 function exitBuying() {
   propertyPlay = [];
-  btnBuy.classList.add('hidden');
-  btnExit.classList.add('hidden');
+  btnBuy.classList.add("hidden");
+  btnExit.classList.add("hidden");
   buyingState = false;
   switchActivePlayer();
 }
 // exit after pay
 function exitPaying() {
   propertyPlay = [];
-  btnPay.classList.add('hidden');
-  btnUseGold.classList.add('hidden');
+  btnPay.classList.add("hidden");
+  btnUseGold.classList.add("hidden");
   switchActivePlayer();
 }
 
@@ -578,31 +645,49 @@ const payToAnotherPlayer = function () {
       // player on south
       if (players[activePlayer].mapPosition === proPlay.mapPositionSouth) {
         // paying the actual property
-        paying(players[e], proPlay.landValueSouth, proPlay.numOfUpSouth);
-        enterPiracy();
-        // check if player had the chain
-        if (returnChainValue(proPlay, players[e])) {
-          paying(
-            players[e],
-            returnChainValue(proPlay, players[e]).chainPayingValueSouth,
-            1
+        if (players[e].notCollect) {
+          alert(
+            "este jugador no cobra porque sus industrias estan cerradas hasta que llegue al FMI"
           );
-          enterPiracyChain();
+          enterPiracy();
+          if (returnChainValue(proPlay, players[e])) {
+            enterPiracyChain();
+          }
+        } else {
+          paying(players[e], proPlay.landValueSouth, proPlay.numOfUpSouth);
+          enterPiracy();
+          // check if player had the chain
+          if (returnChainValue(proPlay, players[e])) {
+            paying(
+              players[e],
+              returnChainValue(proPlay, players[e]).chainPayingValueSouth,
+              1
+            );
+            enterPiracyChain();
+          }
         }
       }
+
       // if player on north
       if (players[activePlayer].mapPosition === proPlay.mapPositionNorth) {
         // paying the actual property
-        paying(players[e], proPlay.landValueNorth, proPlay.numOfUpNorth);
-        // check if player had the chain
-        if (returnChainValue(proPlay, players[e])) {
-          paying(
-            players[e],
-            returnChainValue(proPlay, players[e]).chainPayingValueNorth,
-            1
+        if (players[e].notCollect) {
+          alert(
+            "este jugador no cobra porque sus industrias estan cerradas hasta que llegue al FMI"
           );
+          exitPaying();
+        } else {
+          paying(players[e], proPlay.landValueNorth, proPlay.numOfUpNorth);
+          // check if player had the chain
+          if (returnChainValue(proPlay, players[e])) {
+            paying(
+              players[e],
+              returnChainValue(proPlay, players[e]).chainPayingValueNorth,
+              1
+            );
+          }
+          exitPaying();
         }
-        exitPaying();
       }
     }
   }
@@ -627,20 +712,39 @@ const goldToAnotherPlayer = function () {
     if (players[e].propertyOn.indexOf(proPlay) !== -1) {
       // player on south
       if (players[activePlayer].mapPosition === proPlay.mapPositionSouth) {
-        players[e].goldBar += 1;
-        players[activePlayer].goldBar -= 1;
-        // adding class and removing class and enter in piracy state
-        enterPiracy();
-        // knowing if player had chain so can go into chain state
-        if (returnChainValue(proPlay, players[e])) {
-          enterPiracyChain();
+        if (players[e].notCollect) {
+          alert(
+            "este jugador no cobra porque sus industrias estan cerradas hasta que llegue al FMI"
+          );
+          // adding class and removing class and enter in piracy state
+          enterPiracy();
+          // knowing if player had chain so can go into chain state
+          if (returnChainValue(proPlay, players[e])) {
+            enterPiracyChain();
+          }
+        } else {
+          players[e].goldBar += 1;
+          players[activePlayer].goldBar -= 1;
+          // adding class and removing class and enter in piracy state
+          enterPiracy();
+          // knowing if player had chain so can go into chain state
+          if (returnChainValue(proPlay, players[e])) {
+            enterPiracyChain();
+          }
         }
       }
       // if player on north
       if (players[activePlayer].mapPosition === proPlay.mapPositionNorth) {
-        players[e].goldBar += 1;
-        players[activePlayer].goldBar -= 1;
-        exitPaying();
+        if (players[e].notCollect) {
+          alert(
+            "este jugador no cobra porque sus industrias estan cerradas hasta que llegue al FMI"
+          );
+          exitPaying();
+        } else {
+          players[e].goldBar += 1;
+          players[activePlayer].goldBar -= 1;
+          exitPaying();
+        }
       }
     }
   }
@@ -650,22 +754,22 @@ const goldToAnotherPlayer = function () {
 
 function exitPiracy() {
   propertyPlay = [];
-  btnPiracy.classList.add('hidden');
-  btnExit.classList.add('hidden');
-  btnPiraceChain.classList.add('hidden');
+  btnPiracy.classList.add("hidden");
+  btnExit.classList.add("hidden");
+  btnPiraceChain.classList.add("hidden");
   chainState = false;
   piracyState = false;
   switchActivePlayer();
 }
 function enterPiracy() {
-  btnPay.classList.add('hidden');
-  btnUseGold.classList.add('hidden');
-  btnPiracy.classList.remove('hidden');
-  btnExit.classList.remove('hidden');
+  btnPay.classList.add("hidden");
+  btnUseGold.classList.add("hidden");
+  btnPiracy.classList.remove("hidden");
+  btnExit.classList.remove("hidden");
   piracyState = true;
 }
 function enterPiracyChain() {
-  btnPiraceChain.classList.remove('hidden');
+  btnPiraceChain.classList.remove("hidden");
   chainState = true;
 }
 function toalValuePlusUpgrade(proPlay) {
@@ -758,22 +862,23 @@ const exit = function () {
   updateDisplay();
 };
 const ExitOnshow = function () {
-  overlay.classList.add('hidden');
-  onShow.classList.add('hidden');
-  btnExitOnshow.classList.add('hidden');
+  overlay.classList.add("hidden");
+  onShow.classList.add("hidden");
+  btnExitOnshow.classList.add("hidden");
+  onShow.src = "";
 };
 
 // ************buttoms actions**********
 
-BtnRollDice.addEventListener('click', rollDice);
-btnBuy.addEventListener('click', buying);
-btnPay.addEventListener('click', payToAnotherPlayer);
-btnUseGold.addEventListener('click', goldToAnotherPlayer);
-btnPiracy.addEventListener('click', piracying);
-btnPiraceChain.addEventListener('click', piracyingChain);
-btnExit.addEventListener('click', exit);
-btnExitOnshow.addEventListener('click', ExitOnshow);
-btnUpgradeIndustry.addEventListener('click', upgrade);
+BtnRollDice.addEventListener("click", rollDice);
+btnBuy.addEventListener("click", buying);
+btnPay.addEventListener("click", payToAnotherPlayer);
+btnUseGold.addEventListener("click", goldToAnotherPlayer);
+btnPiracy.addEventListener("click", piracying);
+btnPiraceChain.addEventListener("click", piracyingChain);
+btnExit.addEventListener("click", exit);
+btnExitOnshow.addEventListener("click", ExitOnshow);
+btnUpgradeIndustry.addEventListener("click", upgrade);
 
 //this function is to get position by clicking in the document
 

@@ -11,7 +11,12 @@ class player {
     finalTurn,
     notCollect,
     interest20,
-    displayImg
+    displayImg,
+    militaryCoupSaver,
+    capitalFlightSaver,
+    noPlay,
+    turnWOplayCount,
+    rolling
   ) {
     this.name = name;
     this.propertyOn = propertyOn;
@@ -25,6 +30,11 @@ class player {
     this.notCollect = notCollect;
     this.interest20 = interest20;
     this.displayImg = displayImg;
+    this.militaryCoup = militaryCoupSaver;
+    this.capitalFlightSaver = capitalFlightSaver;
+    this.noPlay = noPlay;
+    this.turnWOplayCount = turnWOplayCount;
+    this.rolling = rolling;
   }
 }
 
@@ -67,7 +77,7 @@ class property {
 
 //fmi count as a player
 const fmi = new player(
-  'FMI',
+  "FMI",
   [],
   120000,
   0,
@@ -78,79 +88,104 @@ const fmi = new player(
   null,
   null,
   null,
-  'fmi_img.png'
+  "fmi_img.png"
 );
 //players
 const player1 = new player(
-  'player1',
+  "player1",
   [],
   0,
   3,
   40,
   40,
-  document.querySelector('.player-1'),
+  document.querySelector(".player-1"),
   true,
   false,
   false,
   false,
-  'player1_img.png'
+  "player1_img.png",
+  false,
+  false,
+  false,
+  0,
+  false
 );
 
 const player2 = new player(
-  'player2',
+  "player2",
   [],
   0,
   3,
   40,
   40,
-  document.querySelector('.player-2'),
+  document.querySelector(".player-2"),
   false,
   false,
   false,
   false,
-  'player2_img.png'
+  "player2_img.png",
+  false,
+  false,
+  false,
+  0,
+  false
 );
 const player3 = new player(
-  'player3',
+  "player3",
   [],
   0,
   3,
   40,
   40,
-  document.querySelector('.player-3'),
+  document.querySelector(".player-3"),
   false,
   false,
   false,
   false,
-  'player3_img.png'
+  "player3_img.png",
+  false,
+  false,
+  false,
+  0,
+  false
 );
 const player4 = new player(
-  'player4',
+  "player4",
   [],
   0,
   3,
   40,
   40,
-  document.querySelector('.player-4'),
+  document.querySelector(".player-4"),
   false,
   false,
   false,
   false,
-  'player4_img.png'
+  "player4_img.png",
+  false,
+  false,
+  false,
+  0,
+  false
 );
 const player5 = new player(
-  'player5',
+  "player5",
   [],
   0,
   3,
   40,
   40,
-  document.querySelector('.player-5'),
+  document.querySelector(".player-5"),
   false,
   false,
   false,
   false,
-  'player5_img.png'
+  "player5_img.png",
+  false,
+  false,
+  false,
+  0,
+  false
 );
 // property
 const azucar = new property(
@@ -166,9 +201,9 @@ const azucar = new property(
   21,
   0,
   0,
-  'azucar.png',
-  'azucar_res.png',
-  'azucar'
+  "azucar.png",
+  "azucar_res.png",
+  "azucar"
 );
 const banano = new property(
   150,
@@ -183,9 +218,9 @@ const banano = new property(
   22,
   0,
   0,
-  'banano.png',
-  'banano_res.png',
-  'banano'
+  "banano.png",
+  "banano_res.png",
+  "banano"
 );
 const cacao = new property(
   200,
@@ -200,9 +235,9 @@ const cacao = new property(
   23,
   0,
   0,
-  'cacao.png',
-  'cacao_res.png',
-  'cacao'
+  "cacao.png",
+  "cacao_res.png",
+  "cacao"
 );
 const algodon = new property(
   250,
@@ -217,9 +252,9 @@ const algodon = new property(
   25,
   0,
   0,
-  'algodon.png',
-  'algodon_res.png',
-  'algodon'
+  "algodon.png",
+  "algodon_res.png",
+  "algodon"
 );
 const tabaco = new property(
   300,
@@ -234,9 +269,9 @@ const tabaco = new property(
   26,
   0,
   0,
-  'tabaco.png',
-  'tabaco_res.png',
-  'tabaco'
+  "tabaco.png",
+  "tabaco_res.png",
+  "tabaco"
 );
 const cafe = new property(
   350,
@@ -251,9 +286,9 @@ const cafe = new property(
   27,
   0,
   0,
-  'cafe.png',
-  'cafe_res.png',
-  'cafe'
+  "cafe.png",
+  "cafe_res.png",
+  "cafe"
 );
 const pesca = new property(
   400,
@@ -268,9 +303,9 @@ const pesca = new property(
   29,
   0,
   0,
-  'pesca.png',
-  'pesca_res.png',
-  'pesca'
+  "pesca.png",
+  "pesca_res.png",
+  "pesca"
 );
 const ganado = new property(
   500,
@@ -285,9 +320,9 @@ const ganado = new property(
   31,
   0,
   0,
-  'ganado.png',
-  'ganado_res.png',
-  'ganado'
+  "ganado.png",
+  "ganado_res.png",
+  "ganado"
 );
 const cobre = new property(
   600,
@@ -302,9 +337,9 @@ const cobre = new property(
   33,
   0,
   0,
-  'cobre.png',
-  'cobre_res.png',
-  'cobre'
+  "cobre.png",
+  "cobre_res.png",
+  "cobre"
 );
 const estano = new property(
   700,
@@ -319,9 +354,9 @@ const estano = new property(
   34,
   0,
   0,
-  'estano.png',
-  'estano_res.png',
-  'estano'
+  "estano.png",
+  "estano_res.png",
+  "estano"
 );
 const hierro = new property(
   800,
@@ -336,9 +371,9 @@ const hierro = new property(
   35,
   0,
   0,
-  'hierro.png',
-  'hierro_res.png',
-  'hierro'
+  "hierro.png",
+  "hierro_res.png",
+  "hierro"
 );
 const petroleo = new property(
   1200,
@@ -353,28 +388,28 @@ const petroleo = new property(
   37,
   0,
   0,
-  'petroleo.png',
-  'petroleo_res.png',
-  'petroleo'
+  "petroleo.png",
+  "petroleo_res.png",
+  "petroleo"
 );
 
-const btnStart = document.querySelector('.btnStart');
+const btnStart = document.querySelector(".btnStart");
 
 // start the game
 const startGame = function () {
-  numberOfPlayers = Number(document.querySelector('#numbersOfplayers').value);
-  player1.name = document.querySelector('#player1Name').value;
-  player2.name = document.querySelector('#player2Name').value;
-  player3.name = document.querySelector('#player3Name').value;
-  player4.name = document.querySelector('#player4Name').value;
-  player5.name = document.querySelector('#player5Name').value;
+  numberOfPlayers = Number(document.querySelector("#numbersOfplayers").value);
+  player1.name = document.querySelector("#player1Name").value;
+  player2.name = document.querySelector("#player2Name").value;
+  player3.name = document.querySelector("#player3Name").value;
+  player4.name = document.querySelector("#player4Name").value;
+  player5.name = document.querySelector("#player5Name").value;
 
   if (numberOfPlayers >= 2 && numberOfPlayers <= 5) {
     for (let e = 0; e < numberOfPlayers; e++) {
       players.push(listOfPlayer[e]);
     }
-    document.querySelector('.formStar').classList.add('hidden');
-    overlay.classList.add('hidden');
+    document.querySelector(".formStar").classList.add("hidden");
+    overlay.classList.add("hidden");
     showTextTurn.innerHTML = `${players[activePlayer].name} <img
       src="../tablero/${players[activePlayer].displayImg}"
       
@@ -387,73 +422,80 @@ const startGame = function () {
     firstTurn = false;
   }
 };
+//show on show
+function displayOnShow(pro) {
+  overlay.classList.remove("hidden");
+  onShow.classList.remove("hidden");
+  btnExitOnshow.classList.remove("hidden");
+  onShow.src = pro;
+}
 
 // displays pllayer
 function displayPlayers() {
   for (let e of players) {
-    let row = document.querySelector('.row');
-    let col = document.createElement('div');
-    let divProp = document.createElement('div');
-    let hName = document.createElement('h2');
-    let pMoney = document.createElement('p');
-    let pGold = document.createElement('p');
+    let row = document.querySelector(".row");
+    let col = document.createElement("div");
+    let divProp = document.createElement("div");
+    let hName = document.createElement("h2");
+    let pMoney = document.createElement("p");
+    let pGold = document.createElement("p");
 
     let money = document.createTextNode(`Dinero💵 ${e.money}`);
     let name = document.createTextNode(`${e.name}`);
 
-    let playerImg = document.createElement('img');
+    let playerImg = document.createElement("img");
 
     let goldBars = document.createTextNode(`Barras de Oro🪙 ${e.goldBar}`);
     playerImg.src = `/tablero/${e.displayImg}`;
-    playerImg.style.width = '40px';
+    playerImg.style.width = "40px";
 
     hName.appendChild(name);
 
     hName.appendChild(playerImg);
 
     pMoney.appendChild(money);
-    pMoney.setAttribute('id', `money${e.displayImg}`);
+    pMoney.setAttribute("id", `money${e.displayImg}`);
 
     pGold.appendChild(goldBars);
-    pGold.setAttribute('id', `gold${e.displayImg}`);
+    pGold.setAttribute("id", `gold${e.displayImg}`);
 
     col.appendChild(hName);
     col.appendChild(pMoney);
     col.appendChild(pGold);
-    col.appendChild(divProp).setAttribute('id', `prop${e.displayImg}`);
+    col.appendChild(divProp).setAttribute("id", `prop${e.displayImg}`);
     for (let i of e.propertyOn) {
-      let divImg = document.createElement('span');
-      let pImg = document.createElement('img');
-      let upImgNort = document.createElement('img');
-      let upImgSouth = document.createElement('img');
+      let divImg = document.createElement("span");
+      let pImg = document.createElement("img");
+      let upImgNort = document.createElement("img");
+      let upImgSouth = document.createElement("img");
 
       pImg.src = `/propiedades/${i.nameImgRes}`;
-      pImg.style.paddingLeft = '0.3rem';
-      pImg.style.width = '60px';
-      pImg.addEventListener('click', () => {
-        overlay.classList.remove('hidden');
-        onShow.classList.remove('hidden');
-        btnExitOnshow.classList.remove('hidden');
+      pImg.style.paddingLeft = "0.3rem";
+      pImg.style.width = "60px";
+      pImg.addEventListener("click", () => {
+        overlay.classList.remove("hidden");
+        onShow.classList.remove("hidden");
+        btnExitOnshow.classList.remove("hidden");
         onShow.src = `/propiedades/${i.nameImg}`;
       });
 
-      upImgNort.setAttribute('id', `upNorth${i.nameImg}`);
-      upImgNort.style.width = '10px';
+      upImgNort.setAttribute("id", `upNorth${i.nameImg}`);
+      upImgNort.style.width = "10px";
 
-      upImgSouth.setAttribute('id', `upSouth${i.nameImg}`);
-      upImgSouth.style.width = '10px';
+      upImgSouth.setAttribute("id", `upSouth${i.nameImg}`);
+      upImgSouth.style.width = "10px";
 
       divImg.appendChild(pImg);
       divImg.appendChild(upImgSouth);
       divImg.appendChild(upImgNort);
 
-      divImg.setAttribute('id', `${i.nameImg}`);
+      divImg.setAttribute("id", `${i.nameImg}`);
 
       divProp.appendChild(divImg);
     }
 
-    row.appendChild(col).classList.add('col', 'col-lg-2', 'col-sm-2');
+    row.appendChild(col).classList.add("col", "col-lg-2", "col-sm-2");
   }
 }
 
-btnStart.addEventListener('click', startGame);
+btnStart.addEventListener("click", startGame);
