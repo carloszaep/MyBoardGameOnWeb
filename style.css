@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 * {
-  font-family: 'Bebas Neue', cursive;
+  font-family: "Bebas Neue", cursive;
   margin: 0;
   padding: 0;
 }
@@ -159,6 +159,27 @@ body {
   z-index: 15;
   right: 500px;
   top: 0;
+}
+.coneImg {
+  position: absolute;
+  z-index: 5;
+  left: 775px;
+  top: 200px;
+  width: 100px;
+}
+.btnBarrier {
+  position: absolute;
+  z-index: 5;
+  left: 775px;
+  top: 300px;
+  width: 100px;
+}
+.barrierCount {
+  position: absolute;
+  z-index: 5;
+  left: 925px;
+  top: 300px;
+  width: 100px;
 }
 /* show who's turn  */
 .showTurn {

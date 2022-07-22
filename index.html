@@ -56,7 +56,13 @@
       <div class="formStar">
         <div class="from">
           <label for="numbersOfplayers">Numeros de Jugadores 2-5:</label><br />
-          <input type="number" id="numbersOfplayers" min="2" max="5" /><br />
+          <input
+            type="number"
+            value="2"
+            id="numbersOfplayers"
+            min="2"
+            max="5"
+          /><br />
 
           <label for="player1Name">Jugador-1 Nombre:</label><br />
           <input
@@ -192,6 +198,12 @@
       <img class="onshow hidden" src="../propiedades/azucar.png" alt="" />
       <!-- buttom to exit on show  -->
       <button class="btn-close btnExitOnshow hidden"></button>
+      <!-- barrier cone -->
+      <img src="/tablero/cone.png" class="coneImg hidden" alt="cone" />
+      <button class="btn btn-dark btnBarrier hidden">
+        Depositar Para Quitar Barrera🚦
+      </button>
+      <p class="barrierCount hidden">Faltan 2000</p>
     </section>
     <section id="players">
       <div class="row"></div>

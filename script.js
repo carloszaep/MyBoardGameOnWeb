@@ -9,6 +9,7 @@ const btnPay = document.querySelector(".btnPay");
 const btnPiracy = document.querySelector(".btnPiracy");
 const btnPiraceChain = document.querySelector(".btnPiraceChain");
 const btnExitOnshow = document.querySelector(".btnExitOnshow ");
+const btnBarrier = document.querySelector(".btnBarrier");
 
 // dices img
 const diceImg = document.querySelector(".diceImg");
@@ -19,6 +20,8 @@ const diceImg4 = document.querySelector(".diceImg4");
 const onShow = document.querySelector(".onshow");
 // text that show who's turn
 const showTextTurn = document.querySelector("#playerTurn");
+const barrierCountText = document.querySelector(".barrierCount");
+const coneImg = document.querySelector(".coneImg");
 
 // overlay
 const overlay = document.querySelector(".overlay");
@@ -49,7 +52,7 @@ const properties = [
 ];
 // adding all properties to fmi propertyOn to star the game fmi had all property
 for (i of properties) {
-  player1.propertyOn.push(i);
+  fmi.propertyOn.push(i);
 }
 // number of player is going to be define lether by the user
 let numberOfPlayers;
@@ -63,6 +66,8 @@ let buyingState;
 let piracyState;
 let payingState;
 let chainState;
+let barrier = false;
+let barrierCount = 0;
 
 // ***********displays functions*********
 function updateDisplay() {
@@ -74,6 +79,8 @@ function updateDisplay() {
     document.getElementById(
       `gold${players[e].displayImg}`
     ).innerHTML = `Barras de Oro🪙 ${players[e].goldBar}`;
+    // update barrier count
+    barrierCountText.textContent = `Faltan ${2000 - barrierCount}`;
 
     // update property depent where they are
     let playerP = document.getElementById(`prop${players[e].displayImg}`);
@@ -106,17 +113,17 @@ function updateDisplay() {
 // when moving and check for dices
 const movePlayer = function (player) {
   // dices
-  let dice = 4; // Math.floor(Math.random() * 6) + 1;
-  let dice2 = 4; // Math.floor(Math.random() * 6) + 1;
+  let dice = Math.floor(Math.random() * 6) + 1;
+  let dice2 = Math.floor(Math.random() * 6) + 1;
   let dice3 = 0;
   let dice4 = 0;
   if (player.money < -10000) {
-    dice3 = 1; //Math.floor(Math.random() * 6) + 1;
+    dice3 = Math.floor(Math.random() * 6) + 1;
     diceImg3.src = `../tablero/dice-${dice3}.png`;
     diceImg3.classList.remove("hidden");
   }
   if (player.money < -20000) {
-    dice4 = 0; //Math.floor(Math.random() * 6) + 1;
+    dice4 = Math.floor(Math.random() * 6) + 1;
     diceImg4.src = `../tablero/dice-${dice4}.png`;
     diceImg4.classList.remove("hidden");
   }
@@ -313,14 +320,16 @@ function getPropChain(whoGive, property) {
 
 // rolling on property
 const rollingOnProperty = function () {
-  for (let i = 0; i < properties.length; i++)
+  for (let i = 0; i < properties.length; i++) {
     // when rolling on a property on South
+    let proPlay = properties[i];
     if (players[activePlayer].mapPosition === properties[i].mapPositionSouth) {
-      let proPlay = properties[i];
       // if property on fmi
       if (fmi.propertyOn.indexOf(proPlay) !== -1) {
         btnBuy.classList.remove("hidden");
         btnExit.classList.remove("hidden");
+        // BtnRollDice.classList.add("hidden");
+        // btnUpgradeIndustry.classList.add("hidden");
         buyingState = true;
         // always when a property need action in another function it goes to propertyPlay
         propertyPlay.push(properties[i]);
@@ -345,7 +354,6 @@ const rollingOnProperty = function () {
     } else if (
       players[activePlayer].mapPosition === properties[i].mapPositionNorth
     ) {
-      let proPlay = properties[i];
       // if property on fmi
       if (fmi.propertyOn.indexOf(proPlay) !== -1) {
         btnPay.classList.remove("hidden");
@@ -357,14 +365,21 @@ const rollingOnProperty = function () {
       }
       // if property onw by actual player
       if (players[activePlayer].propertyOn.indexOf(proPlay) !== -1) {
-        if (players[activePlayer].notCollect) {
-          alert("usted no cobra nada hasta que llegue al FMI");
+        if (barrier) {
+          alert(
+            "porque la barrera esta activa usted no cobra nada en su propiedad"
+          );
           switchActivePlayer();
-          break;
         } else {
-          collecting(fmi, proPlay.landValueNorth, proPlay.numOfUpNorth);
-          switchActivePlayer();
-          break;
+          if (players[activePlayer].notCollect) {
+            alert("usted no cobra nada hasta que llegue al FMI");
+            switchActivePlayer();
+            break;
+          } else {
+            collecting(fmi, proPlay.landValueNorth, proPlay.numOfUpNorth);
+            switchActivePlayer();
+            break;
+          }
         }
       }
       if (
@@ -378,6 +393,7 @@ const rollingOnProperty = function () {
         propertyPlay.push(proPlay);
       }
     }
+  }
 };
 
 //**********functions to put in a event listener*************
@@ -392,7 +408,9 @@ const rollDice = function () {
   }
   let chechIfPlayerFinish = activePlayer;
   if (players[activePlayer].finalTurn) {
-    rollingOnProperty();
+    if (chechIfPlayerFinish === activePlayer) {
+      rollingOnProperty();
+    }
 
     if (chechIfPlayerFinish === activePlayer) {
       rollingOnSoli();
@@ -879,6 +897,7 @@ btnPiraceChain.addEventListener("click", piracyingChain);
 btnExit.addEventListener("click", exit);
 btnExitOnshow.addEventListener("click", ExitOnshow);
 btnUpgradeIndustry.addEventListener("click", upgrade);
+btnBarrier.addEventListener("click", removeBarrier);
 
 //this function is to get position by clicking in the document
 

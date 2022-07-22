@@ -6,7 +6,8 @@ function rollingOnSoli() {
     player.mapPosition === 16 ||
     player.mapPosition === 32
   ) {
-    let soliCard = 6;
+    let soliCard = Math.floor(Math.random() * 18) + 1;
+
     // soli1
     if (soliCard === 1) {
       displayOnShow(`salidaridad/salidari${soliCard}.png`);
@@ -145,7 +146,23 @@ function rollingOnFmi() {
     player.mapPosition === 19 ||
     player.mapPosition === 28
   ) {
-    let fmiCard = 15;
+    let fmiCard = Math.floor(Math.random() * 15) + 1;
+    // 12 had to put this one first so if false take another car
+    if (fmiCard === 12) {
+      displayOnShow(`/fmi/fmi${fmiCard}.png`);
+      if (checkOwnProperty(fmi)) {
+        for (let p of fmi.propertyOn) {
+          player.img.classList.remove(`--${player.mapPosition}`);
+          player.mapPosition = p.mapPositionNorth;
+          player.img.classList.add(`--${player.mapPosition}`);
+          paying(fmi, p.landValueNorth * 2, 1);
+          switchActivePlayer();
+          break;
+        }
+      } else {
+        fmiCard = Math.floor(Math.random() * 15) + 1;
+      }
+    }
     // fmi card 1
     if (fmiCard === 1) {
       displayOnShow(`/fmi/fmi${fmiCard}.png`);
@@ -241,20 +258,6 @@ function rollingOnFmi() {
       player.mapPosition = 32;
       player.img.classList.add(`--${player.mapPosition}`);
     }
-    // 12
-    if (fmiCard === 12) {
-      displayOnShow(`/fmi/fmi${fmiCard}.png`);
-      if (checkOwnProperty(fmi)) {
-        for (let p of fmi.propertyOn) {
-          player.img.classList.remove(`--${player.mapPosition}`);
-          player.mapPosition = p.mapPositionNorth;
-          player.img.classList.add(`--${player.mapPosition}`);
-          paying(fmi, p.landValueNorth * 2, 1);
-          break;
-        }
-      } else alert("another card"); // need to put more hire when i fic how to change cards
-      switchActivePlayer();
-    }
     // 13
     if (fmiCard === 13) {
       displayOnShow(`/fmi/fmi${fmiCard}.png`);
@@ -305,8 +308,39 @@ function rollingOnFmi() {
 function rollingSpace20Barrier() {
   let player = players[activePlayer];
   if (player.mapPosition === 20) {
-    switchActivePlayer(); // need to make a function for this one
+    if (barrier) {
+      barrierCountText.classList.add("hidden");
+      coneImg.classList.add("hidden");
+      btnBarrier.classList.add("hidden");
+      barrierCount = 0;
+      barrier = false;
+    } else {
+      barrierCountText.classList.remove("hidden");
+      coneImg.classList.remove("hidden");
+      btnBarrier.classList.remove("hidden");
+      barrier = true;
+    }
+    switchActivePlayer();
   }
+}
+function removeBarrier() {
+  let playerDeposit = null;
+
+  while (playerDeposit === null || playerDeposit === NaN) {
+    playerDeposit = Number(prompt("cuento quieres depositar (solo numeros)"));
+  }
+  if (playerDeposit != NaN) {
+    paying(fmi, playerDeposit, 1);
+    barrierCount += playerDeposit;
+  }
+  if (barrierCount >= 2000) {
+    barrierCountText.classList.add("hidden");
+    coneImg.classList.add("hidden");
+    btnBarrier.classList.add("hidden");
+    barrierCount = 0;
+    barrier = false;
+  }
+  updateDisplay();
 }
 
 function rollingSpace38() {
@@ -330,8 +364,8 @@ function rollingOnSpace32() {
     if (player.goldBar > 1) {
       player.goldBar--;
     }
+    switchActivePlayer();
   }
-  switchActivePlayer();
 }
 
 function rollingOnFMIspace39() {
