@@ -4,7 +4,7 @@ function rollingOnSoli() {
   if (
     player.mapPosition === 4 ||
     player.mapPosition === 16 ||
-    player.mapPosition === 32
+    player.mapPosition === 36
   ) {
     let soliCard = Math.floor(Math.random() * 18) + 1;
 
@@ -142,9 +142,10 @@ function rollingOnSoli() {
 function rollingOnFmi() {
   let player = players[activePlayer];
   if (
-    player.mapPosition === 8 ||
-    player.mapPosition === 19 ||
-    player.mapPosition === 28
+    (player.mapPosition === 8 ||
+      player.mapPosition === 19 ||
+      player.mapPosition === 28) &&
+    player.money < 0
   ) {
     let fmiCard = Math.floor(Math.random() * 15) + 1;
     // 12 had to put this one first so if false take another car
@@ -284,7 +285,7 @@ function rollingOnFmi() {
         let waitForUser = true;
         while (waitForUser) {
           let whatProperty = prompt(
-            `por favor ingrese cual propiedad quiere (no tildes)${checkOwnProperty(
+            `por favor ingrese cual propiedad quiere =>  ${checkOwnProperty(
               player
             )}`
           );
@@ -302,6 +303,13 @@ function rollingOnFmi() {
       } else alert("no tines propiedades");
       switchActivePlayer();
     }
+  } else if (
+    (player.mapPosition === 8 ||
+      player.mapPosition === 19 ||
+      player.mapPosition === 28) &&
+    player.money > 0
+  ) {
+    switchActivePlayer();
   }
 }
 
@@ -327,7 +335,7 @@ function removeBarrier() {
   let playerDeposit = null;
 
   while (playerDeposit === null || playerDeposit === NaN) {
-    playerDeposit = Number(prompt("cuento quieres depositar (solo numeros)"));
+    playerDeposit = Number(prompt("cuento quieres depositar"));
   }
   if (playerDeposit != NaN) {
     paying(fmi, playerDeposit, 1);

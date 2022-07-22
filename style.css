@@ -199,7 +199,8 @@ body {
 }
 #rules {
   text-align: center;
-  margin-right: 200px;
+  padding: 5% 20%;
+  background-color: #9cb4cc;
 }
 
 /* board spaces positions */

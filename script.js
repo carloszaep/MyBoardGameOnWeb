@@ -481,7 +481,7 @@ accentsTidy = function (s) {
 const upgrade = function () {
   if (checkOwnProperty(players[activePlayer])) {
     let whatProperty = prompt(
-      `por favor ingrese cual de sus propiedades (no tildes)${checkOwnProperty(
+      `por favor ingrese cual de sus propiedades => ${checkOwnProperty(
         players[activePlayer]
       )}`
     );
