@@ -264,6 +264,13 @@ const switchActivePlayer = function () {
         }
 
         // showing player's name and img in turn
+        players[activePlayer].img.style.width = "100px";
+        players[activePlayer].img.style.width = "80px";
+        delay(500).then(
+          () => (players[activePlayer].img.style.width = "100px")
+        );
+        delay(500).then(() => (players[activePlayer].img.style.width = "45px"));
+
         showTextTurn.innerHTML = `${players[activePlayer].name} <img
       src="../tablero/${players[activePlayer].displayImg}"
       
@@ -278,6 +285,10 @@ const switchActivePlayer = function () {
     }
   }
 };
+// time wait for animations
+function delay(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
 // paying and getting property
 function paying(whoGet, value, times) {
   if (times !== 0) {

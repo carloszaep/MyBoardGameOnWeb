@@ -413,24 +413,27 @@ function rollingOn10() {
   if (player.mapPosition === 10) {
     if (checkOwnProperty(player)) {
       let waitForUser = true;
-      while (waitForUser) {
-        let whatProperty = prompt(
-          `por favor ingrese cual propiedad quiere mejorar a mitad de precio solo una ves (no tildes)${checkOwnProperty(
-            player
-          )}`
-        );
-        for (let p of player.propertyOn) {
-          if (accentsTidy(whatProperty) == p.name) {
-            waitForUser = false;
-            if (p.numOfUpSouth != 3 && p.numOfUpNorth === p.numOfUpSouth) {
-              p.numOfUpSouth++;
-              paying(fmi, p.upgradeSouth1 / 2, 1);
-              break;
-            }
-            if (p.numOfUpSouth != 3 && p.numOfUpSouth > p.numOfUpNorth) {
-              p.numOfUpNorth++;
-              paying(fmi, p.upgradeNorth1 / 2, 1);
-            }
+
+      let whatProperty = prompt(
+        `cual propiedad quiere mejorar a mitad de precio solo una ves =>  ${checkOwnProperty(
+          player
+        )}`
+      );
+      if (whatProperty == null) {
+        waitForUser = false;
+        switchActivePlayer();
+      }
+      for (let p of player.propertyOn) {
+        if (accentsTidy(whatProperty) == p.name) {
+          waitForUser = false;
+          if (p.numOfUpSouth != 3 && p.numOfUpNorth === p.numOfUpSouth) {
+            p.numOfUpSouth++;
+            paying(fmi, p.upgradeSouth1 / 2, 1);
+            break;
+          }
+          if (p.numOfUpSouth != 3 && p.numOfUpSouth > p.numOfUpNorth) {
+            p.numOfUpNorth++;
+            paying(fmi, p.upgradeNorth1 / 2, 1);
           }
         }
       }
