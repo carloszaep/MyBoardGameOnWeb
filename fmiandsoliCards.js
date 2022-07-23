@@ -353,7 +353,7 @@ function removeBarrier() {
 
 function rollingSpace38() {
   let player = players[activePlayer];
-  if (player.mapPosition === 38) {
+  if (player.mapPosition === 38 || player.mapPosition === 40) {
     switchActivePlayer();
   }
 }
