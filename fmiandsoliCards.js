@@ -389,7 +389,7 @@ function rollingCapitalFlight() {
     if (!player.capitalFlightSaver) {
       paying(fmi, (Math.floor(Math.random() * 6) + 1) * 1000, 1);
     } else player.capitalFlightSaver = false;
-    switchActivePlayer;
+    switchActivePlayer();
   }
 }
 
