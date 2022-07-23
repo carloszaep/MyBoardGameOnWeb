@@ -462,6 +462,7 @@ function displayPlayers() {
     col.appendChild(hName);
     col.appendChild(pMoney);
     col.appendChild(pGold);
+    divProp.style.padding = "1px";
     col.appendChild(divProp).setAttribute("id", `prop${e.displayImg}`);
     for (let i of e.propertyOn) {
       let divImg = document.createElement("span");
