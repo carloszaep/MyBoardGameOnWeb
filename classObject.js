@@ -422,7 +422,7 @@ const startGame = function () {
     firstTurn = false;
   }
 };
-//show on show
+//show display
 function displayOnShow(pro) {
   overlay.classList.remove("hidden");
   onShow.classList.remove("hidden");
@@ -430,7 +430,7 @@ function displayOnShow(pro) {
   onShow.src = pro;
 }
 
-// displays pllayer
+// display players
 function displayPlayers() {
   for (let e of players) {
     let row = document.querySelector(".row");
@@ -467,7 +467,7 @@ function displayPlayers() {
     for (let i of e.propertyOn) {
       let divImg = document.createElement("span");
       let pImg = document.createElement("img");
-      let upImgNort = document.createElement("img");
+      let upImgNorth = document.createElement("img");
       let upImgSouth = document.createElement("img");
 
       pImg.src = `/propiedades/${i.nameImgRes}`;
@@ -480,15 +480,15 @@ function displayPlayers() {
         onShow.src = `/propiedades/${i.nameImg}`;
       });
 
-      upImgNort.setAttribute("id", `upNorth${i.nameImg}`);
-      upImgNort.style.width = "10px";
+      upImgNorth.setAttribute("id", `upNorth${i.nameImg}`);
+      upImgNorth.style.width = "10px";
 
       upImgSouth.setAttribute("id", `upSouth${i.nameImg}`);
       upImgSouth.style.width = "10px";
 
       divImg.appendChild(pImg);
       divImg.appendChild(upImgSouth);
-      divImg.appendChild(upImgNort);
+      divImg.appendChild(upImgNorth);
 
       divImg.setAttribute("id", `${i.nameImg}`);
 

@@ -1,5 +1,5 @@
 // ***********defining html element**********
-// buttoms
+// buttons
 const BtnRollDice = document.querySelector(".btnRollDice");
 const btnUpgradeIndustry = document.querySelector(".btnUpgradeIndustry");
 const btnBuy = document.querySelector(".btnBuy");
@@ -7,7 +7,7 @@ const btnExit = document.querySelector(".btnExit");
 const btnUseGold = document.querySelector(".btnUseGold");
 const btnPay = document.querySelector(".btnPay");
 const btnPiracy = document.querySelector(".btnPiracy");
-const btnPiraceChain = document.querySelector(".btnPiraceChain");
+const btnPiracyChain = document.querySelector(".btnPiraceChain");
 const btnExitOnshow = document.querySelector(".btnExitOnshow ");
 const btnBarrier = document.querySelector(".btnBarrier");
 
@@ -26,10 +26,10 @@ const coneImg = document.querySelector(".coneImg");
 // overlay
 const overlay = document.querySelector(".overlay");
 
-//*******game logic gloval variables*********
+//*******game logic global variables*********
 
 // knowing what player is active by number
-let activePlayer = 1; // i need to make a function so the 1 chnage depending of player starTurn and finalTurns
+let activePlayer = 1; //
 
 // list all player fmi is already on
 const players = [fmi];
@@ -54,13 +54,13 @@ const properties = [
 for (i of properties) {
   fmi.propertyOn.push(i);
 }
-// number of player is going to be define lether by the user
+// number of player is going to be define later by the user
 let numberOfPlayers;
 
 // property on play // had to make this list to know what property is going to (buy,upgrade or (es= piratiar))
 let propertyPlay = [];
 
-// this variables are to know what is happening know (and buttom exit can know where to exit)
+// this variables are to know what is happening know (and button exit can know where to exit)
 let firstTurn = true;
 let buyingState;
 let piracyState;
@@ -135,7 +135,7 @@ const movePlayer = function (player) {
   //chnage player pos
   player.lastPosition = player.mapPosition;
   player.mapPosition += dice + dice2 + dice3 + dice4;
-  // when player make a complite board it began with 40 - pos
+  // when player make a entire board it began with 40 - pos
   if (player.mapPosition > 40) {
     player.mapPosition -= 40;
   }
@@ -172,7 +172,7 @@ const movePlayer = function (player) {
   }
 };
 
-// change strat turn to final turn
+// change start turn to final turn
 const switchStarTurn = function () {
   if (players[activePlayer].startTurn) {
     players[activePlayer].startTurn = false;
@@ -182,7 +182,7 @@ const switchStarTurn = function () {
   }
 };
 
-// chnage final turn to next player star turn and change active player
+// change final turn to next player star turn and change active player
 const switchActivePlayer = function () {
   // eliminating players if money < -30000
   if (players[activePlayer].money < -30000) {
@@ -322,7 +322,7 @@ function getPropChain(whoGive, property) {
     let removeIndex = whoGive.propertyOn.indexOf(chain2);
     whoGive.propertyOn.splice(removeIndex, 1);
   }
-  // removing actal prop and chin1
+  // removing actual prop and chin1
   let removeIndex2 = whoGive.propertyOn.indexOf(chain1);
   whoGive.propertyOn.splice(removeIndex2, 1);
   let removeIndex3 = whoGive.propertyOn.indexOf(property);
@@ -417,50 +417,50 @@ const rollDice = function () {
 
     // all options that happen when is final turn
   }
-  let chechIfPlayerFinish = activePlayer;
+  let checkIfPlayerFinish = activePlayer;
   if (players[activePlayer].finalTurn) {
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingOnProperty();
     }
 
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingOnSoli();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingOnFmi();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingNacional();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingOn10();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingMilitaryCoup();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingCapitalFlight();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingOnFMIspace39();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingOnSpace32();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingSpace30();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingSpace38();
     }
-    if (chechIfPlayerFinish === activePlayer) {
+    if (checkIfPlayerFinish === activePlayer) {
       rollingSpace20Barrier();
     }
   }
   updateDisplay();
 };
 // upgrading
-//geting all name of property that you have if dont have return false
+//getting all name of property that you have if do not have return false
 
 function checkOwnProperty(player) {
   let ownProperties = [];
@@ -497,7 +497,7 @@ const upgrade = function () {
       )}`
     );
     for (let p of players[activePlayer].propertyOn) {
-      ////// i need to make a function to upgrade depent of the upgrade
+      ////// i need to make a function to upgrade depend of the upgrade
       if (accentsTidy(whatProperty) == p.name) {
         if (p.numOfUpSouth === 0) {
           paying(fmi, p.upgradeSouth1, 1);
@@ -549,7 +549,7 @@ const buying = function () {
   // paying and getting property
   paying(fmi, propertyPlay[0].landValueSouth, 1);
   getProp(fmi, propertyPlay[0]);
-  // adding hidden class to buttoms and
+  // adding hidden class to buttons and
   exitBuying();
   updateDisplay();
 };
@@ -563,7 +563,7 @@ function returnChainValue(proPlay, owner) {
     var totalCostValue;
     var chainPro1;
     var chainPro2;
-    // cheking all possibilities of chain
+    // check all possibilities of chain
     if (
       proPlay === properties[p] &&
       (p === 0 || p === 3 || p === 8) &&
@@ -577,8 +577,8 @@ function returnChainValue(proPlay, owner) {
         properties[p + 1].landValueNorth * properties[p + 1].numOfUpNorth +
         properties[p + 2].landValueNorth * properties[p + 2].numOfUpNorth;
       totalCostValue =
-        toalValuePlusUpgrade(properties[p + 1]) +
-        toalValuePlusUpgrade(properties[p + 2]);
+        totalValuePlusUpgrade(properties[p + 1]) +
+        totalValuePlusUpgrade(properties[p + 2]);
       chainPro1 = properties[p + 1];
       chainPro2 = properties[p + 2];
     }
@@ -595,8 +595,8 @@ function returnChainValue(proPlay, owner) {
         properties[p + 1].landValueNorth * properties[p + 1].numOfUpNorth +
         properties[p - 1].landValueNorth * properties[p - 1].numOfUpNorth;
       totalCostValue =
-        toalValuePlusUpgrade(properties[p + 1]) +
-        toalValuePlusUpgrade(properties[p - 1]);
+        totalValuePlusUpgrade(properties[p + 1]) +
+        totalValuePlusUpgrade(properties[p - 1]);
       chainPro1 = properties[p + 1];
       chainPro2 = properties[p - 1];
     }
@@ -613,8 +613,8 @@ function returnChainValue(proPlay, owner) {
         properties[p - 1].landValueNorth * properties[p - 1].numOfUpNorth +
         properties[p - 2].landValueNorth * properties[p - 2].numOfUpNorth;
       totalCostValue =
-        toalValuePlusUpgrade(properties[p - 1]) +
-        toalValuePlusUpgrade(properties[p - 2]);
+        totalValuePlusUpgrade(properties[p - 1]) +
+        totalValuePlusUpgrade(properties[p - 2]);
       chainPro1 = properties[p - 1];
       chainPro2 = properties[p - 2];
     }
@@ -626,7 +626,7 @@ function returnChainValue(proPlay, owner) {
         properties[7].landValueSouth * properties[7].numOfUpSouth;
       chainPayingValueNorth =
         properties[7].landValueNorth * properties[7].numOfUpNorth;
-      totalCostValue = toalValuePlusUpgrade(properties[7]);
+      totalCostValue = totalValuePlusUpgrade(properties[7]);
     } else if (
       proPlay === properties[7] &&
       owner.propertyOn.indexOf(properties[6]) !== -1
@@ -635,10 +635,10 @@ function returnChainValue(proPlay, owner) {
         properties[6].landValueSouth * properties[6].numOfUpSouth;
       chainPayingValueNorth =
         properties[6].landValueNorth * properties[6].numOfUpNorth;
-      totalCostValue = toalValuePlusUpgrade(properties[6]);
+      totalCostValue = totalValuePlusUpgrade(properties[6]);
     }
   }
-  // returning a false if player dont have chain
+  // returning a false if player do not have chain
   if (
     (chainPayingValueSouth, chainPayingValueNorth, totalCostValue == undefined)
   ) {
@@ -785,7 +785,7 @@ function exitPiracy() {
   propertyPlay = [];
   btnPiracy.classList.add("hidden");
   btnExit.classList.add("hidden");
-  btnPiraceChain.classList.add("hidden");
+  btnPiracyChain.classList.add("hidden");
   chainState = false;
   piracyState = false;
   switchActivePlayer();
@@ -798,10 +798,10 @@ function enterPiracy() {
   piracyState = true;
 }
 function enterPiracyChain() {
-  btnPiraceChain.classList.remove("hidden");
+  btnPiracyChain.classList.remove("hidden");
   chainState = true;
 }
-function toalValuePlusUpgrade(proPlay) {
+function totalValuePlusUpgrade(proPlay) {
   // adding all possible value to the variable total
   let total = 0;
   if (proPlay.numOfUpSouth === 0) {
@@ -836,7 +836,7 @@ function toalValuePlusUpgrade(proPlay) {
 }
 
 // when press the buttoms
-const piracying = function () {
+const pirating = function () {
   for (let e = 1; e < players.length; e++) {
     let proPlay = propertyPlay[0];
     // to make skip player active
@@ -846,7 +846,7 @@ const piracying = function () {
     if (players[e].propertyOn.indexOf(proPlay) !== -1) {
       // finish the piracy and change turn
       paying(fmi, chainState ? 4000 : 2000, 1);
-      paying(players[e], toalValuePlusUpgrade(proPlay), 1);
+      paying(players[e], totalValuePlusUpgrade(proPlay), 1);
       getProp(players[e], propertyPlay[0]);
       exitPiracy();
     }
@@ -854,7 +854,7 @@ const piracying = function () {
   updateDisplay();
 };
 
-const piracyingChain = function () {
+const piratingChain = function () {
   let proPlay = propertyPlay[0];
   for (let e = 1; e < players.length; e++) {
     // to make skip player active
@@ -866,7 +866,7 @@ const piracyingChain = function () {
       paying(fmi, 2000, 1);
       paying(
         players[e],
-        toalValuePlusUpgrade(proPlay) +
+        totalValuePlusUpgrade(proPlay) +
           returnChainValue(proPlay, players[e]).totalCostValue,
         1
       );
@@ -879,7 +879,7 @@ const piracyingChain = function () {
 //exit
 const exit = function () {
   if (buyingState) {
-    // if porperty is bought buy player fmi pay the price of the land
+    // if property is bought buy player fmi pay the price of the land
 
     collecting(fmi, propertyPlay[0].landValueSouth, 1);
     // then exit
@@ -897,14 +897,14 @@ const ExitOnshow = function () {
   onShow.src = "";
 };
 
-// ************buttoms actions**********
+// ************buttons actions**********
 
 BtnRollDice.addEventListener("click", rollDice);
 btnBuy.addEventListener("click", buying);
 btnPay.addEventListener("click", payToAnotherPlayer);
 btnUseGold.addEventListener("click", goldToAnotherPlayer);
-btnPiracy.addEventListener("click", piracying);
-btnPiraceChain.addEventListener("click", piracyingChain);
+btnPiracy.addEventListener("click", pirating);
+btnPiracyChain.addEventListener("click", piratingChain);
 btnExit.addEventListener("click", exit);
 btnExitOnshow.addEventListener("click", ExitOnshow);
 btnUpgradeIndustry.addEventListener("click", upgrade);
