@@ -6,4 +6,4 @@ postscript:
 
 (to all programmers who read the code, my apologies I know that the code is a bit messy and I have to admit that, I repeat on some occasions, just remember that it was my first project and I was learning to program thanks, wait for my next projects to judge me 😉. Thanks
 
-i deploy the game in this address => www.juegosmeza.com
+
