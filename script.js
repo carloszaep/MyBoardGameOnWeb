@@ -33,8 +33,7 @@ let activePlayer = 1; //
 
 // list all player fmi is already on
 const players = [fmi];
-// list of all player to be add in players list that is the want that playing
-let listOfPlayer = [player1, player2, player3, player4, player5];
+
 // list all properties
 const properties = [
   azucar,
@@ -474,7 +473,7 @@ function checkOwnProperty(player) {
 }
 // removing accents from user input
 accentsTidy = function (s) {
-  var r = s.toLowerCase();
+  let r = s.toLowerCase();
   r = r.replace(new RegExp(/\s/g), "");
   r = r.replace(new RegExp(/[àáâãäå]/g), "a");
   r = r.replace(new RegExp(/æ/g), "ae");
@@ -909,6 +908,11 @@ btnExit.addEventListener("click", exit);
 btnExitOnshow.addEventListener("click", ExitOnshow);
 btnUpgradeIndustry.addEventListener("click", upgrade);
 btnBarrier.addEventListener("click", removeBarrier);
+
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  e.returnValue = "if you leave nothing get save";
+});
 
 //this function is to get position by clicking in the document
 

@@ -1,11 +1,8 @@
 class player {
   constructor(
     name,
-    propertyOn,
     money,
     goldBar,
-    mapPosition,
-    lastPosition,
     img,
     startTurn,
     finalTurn,
@@ -19,11 +16,11 @@ class player {
     rolling
   ) {
     this.name = name;
-    this.propertyOn = propertyOn;
+    this.propertyOn = [];
     this.money = money;
     this.goldBar = goldBar;
-    this.mapPosition = mapPosition;
-    this.lastPosition = lastPosition;
+    this.mapPosition = 40;
+    this.lastPosition = 40;
     this.img = img;
     this.startTurn = startTurn;
     this.finalTurn = finalTurn;
@@ -78,7 +75,6 @@ class property {
 //fmi count as a player
 const fmi = new player(
   "FMI",
-  [],
   120000,
   0,
   null,
@@ -90,103 +86,7 @@ const fmi = new player(
   null,
   "fmi_img.png"
 );
-//players
-const player1 = new player(
-  "player1",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-1"),
-  true,
-  false,
-  false,
-  false,
-  "player1_img.png",
-  false,
-  false,
-  false,
-  0,
-  false
-);
 
-const player2 = new player(
-  "player2",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-2"),
-  false,
-  false,
-  false,
-  false,
-  "player2_img.png",
-  false,
-  false,
-  false,
-  0,
-  false
-);
-const player3 = new player(
-  "player3",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-3"),
-  false,
-  false,
-  false,
-  false,
-  "player3_img.png",
-  false,
-  false,
-  false,
-  0,
-  false
-);
-const player4 = new player(
-  "player4",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-4"),
-  false,
-  false,
-  false,
-  false,
-  "player4_img.png",
-  false,
-  false,
-  false,
-  0,
-  false
-);
-const player5 = new player(
-  "player5",
-  [],
-  0,
-  3,
-  40,
-  40,
-  document.querySelector(".player-5"),
-  false,
-  false,
-  false,
-  false,
-  "player5_img.png",
-  false,
-  false,
-  false,
-  0,
-  false
-);
 // property
 const azucar = new property(
   100,
@@ -398,15 +298,37 @@ const btnStart = document.querySelector(".btnStart");
 // start the game
 const startGame = function () {
   numberOfPlayers = Number(document.querySelector("#numbersOfplayers").value);
-  player1.name = document.querySelector("#player1Name").value;
-  player2.name = document.querySelector("#player2Name").value;
-  player3.name = document.querySelector("#player3Name").value;
-  player4.name = document.querySelector("#player4Name").value;
-  player5.name = document.querySelector("#player5Name").value;
+  const player1Name = document.querySelector("#player1Name").value;
+  const player2Name = document.querySelector("#player2Name").value;
+  const player3Name = document.querySelector("#player3Name").value;
+  const player4Name = document.querySelector("#player4Name").value;
+  const player5Name = document.querySelector("#player5Name").value;
+  const playersName = [
+    player1Name,
+    player2Name,
+    player3Name,
+    player4Name,
+    player5Name,
+  ];
 
   if (numberOfPlayers >= 2 && numberOfPlayers <= 5) {
     for (let e = 0; e < numberOfPlayers; e++) {
-      players.push(listOfPlayer[e]);
+      players[1 + e] = new player(
+        playersName[e],
+        0,
+        3,
+        document.querySelector(`.player-${e + 1}`),
+        true,
+        false,
+        false,
+        false,
+        `player${1 + e}_img.png`,
+        false,
+        false,
+        false,
+        0,
+        false
+      );
     }
     document.querySelector(".formStar").classList.add("hidden");
     overlay.classList.add("hidden");
