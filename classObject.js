@@ -1,4 +1,4 @@
-class player {
+class Player {
   constructor(
     name,
     money,
@@ -35,7 +35,7 @@ class player {
   }
 }
 
-class property {
+class Property {
   constructor(
     landValueSouth,
     landValueNorth,
@@ -73,7 +73,7 @@ class property {
 //****************assigning classes *************
 
 //fmi count as a player
-const fmi = new player(
+const fmi = new Player(
   "FMI",
   120000,
   0,
@@ -88,7 +88,7 @@ const fmi = new player(
 );
 
 // property
-const azucar = new property(
+const azucar = new Property(
   100,
   200,
   150,
@@ -105,7 +105,7 @@ const azucar = new property(
   "azucar_res.png",
   "azucar"
 );
-const banano = new property(
+const banano = new Property(
   150,
   300,
   250,
@@ -122,7 +122,7 @@ const banano = new property(
   "banano_res.png",
   "banano"
 );
-const cacao = new property(
+const cacao = new Property(
   200,
   400,
   300,
@@ -139,7 +139,7 @@ const cacao = new property(
   "cacao_res.png",
   "cacao"
 );
-const algodon = new property(
+const algodon = new Property(
   250,
   500,
   350,
@@ -156,7 +156,7 @@ const algodon = new property(
   "algodon_res.png",
   "algodon"
 );
-const tabaco = new property(
+const tabaco = new Property(
   300,
   600,
   450,
@@ -173,7 +173,7 @@ const tabaco = new property(
   "tabaco_res.png",
   "tabaco"
 );
-const cafe = new property(
+const cafe = new Property(
   350,
   700,
   500,
@@ -190,7 +190,7 @@ const cafe = new property(
   "cafe_res.png",
   "cafe"
 );
-const pesca = new property(
+const pesca = new Property(
   400,
   800,
   600,
@@ -207,7 +207,7 @@ const pesca = new property(
   "pesca_res.png",
   "pesca"
 );
-const ganado = new property(
+const ganado = new Property(
   500,
   1000,
   750,
@@ -224,7 +224,7 @@ const ganado = new property(
   "ganado_res.png",
   "ganado"
 );
-const cobre = new property(
+const cobre = new Property(
   600,
   1200,
   900,
@@ -241,7 +241,7 @@ const cobre = new property(
   "cobre_res.png",
   "cobre"
 );
-const estano = new property(
+const estano = new Property(
   700,
   1400,
   1050,
@@ -258,7 +258,7 @@ const estano = new property(
   "estano_res.png",
   "estano"
 );
-const hierro = new property(
+const hierro = new Property(
   800,
   1600,
   1200,
@@ -275,7 +275,7 @@ const hierro = new property(
   "hierro_res.png",
   "hierro"
 );
-const petroleo = new property(
+const petroleo = new Property(
   1200,
   2400,
   1800,
@@ -313,7 +313,7 @@ const startGame = function () {
 
   if (numberOfPlayers >= 2 && numberOfPlayers <= 5) {
     for (let e = 0; e < numberOfPlayers; e++) {
-      players[1 + e] = new player(
+      players[1 + e] = new Player(
         playersName[e],
         0,
         3,

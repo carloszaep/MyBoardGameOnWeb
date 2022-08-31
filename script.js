@@ -59,7 +59,7 @@ let numberOfPlayers;
 // property on play // had to make this list to know what property is going to (buy,upgrade or (es= piratiar))
 let propertyPlay = [];
 
-// this variables are to know what is happening know (and button exit can know where to exit)
+// global variables
 let firstTurn = true;
 let buyingState;
 let piracyState;
@@ -81,7 +81,7 @@ function updateDisplay() {
     // update barrier count
     barrierCountText.textContent = `Faltan ${2000 - barrierCount}`;
 
-    // update property depent where they are
+    // update property depend where they are
     let playerP = document.getElementById(`prop${players[e].displayImg}`);
     for (let p of players[e].propertyOn) {
       let proId = document.getElementById(`${p.nameImg}`);
@@ -107,7 +107,7 @@ function updateDisplay() {
     }
   }
 }
-//**********games funct ions ***********
+//**********games functions ***********
 
 // when moving and check for dices
 const movePlayer = function (player) {
@@ -127,11 +127,11 @@ const movePlayer = function (player) {
     diceImg4.classList.remove("hidden");
   }
 
-  // chnage the dice img by dice value
+  // change the dice img by dice value
   diceImg.src = `../tablero/dice-${dice}.png`;
   diceImg2.src = `../tablero/dice-${dice2}.png`;
 
-  //chnage player pos
+  //change player pos
   player.lastPosition = player.mapPosition;
   player.mapPosition += dice + dice2 + dice3 + dice4;
   // when player make a entire board it began with 40 - pos
@@ -800,6 +800,7 @@ function enterPiracyChain() {
   btnPiracyChain.classList.remove("hidden");
   chainState = true;
 }
+
 function totalValuePlusUpgrade(proPlay) {
   // adding all possible value to the variable total
   let total = 0;
@@ -834,7 +835,7 @@ function totalValuePlusUpgrade(proPlay) {
   return total;
 }
 
-// when press the buttoms
+// when press the buttons
 const pirating = function () {
   for (let e = 1; e < players.length; e++) {
     let proPlay = propertyPlay[0];
