@@ -6,4 +6,4 @@ postscript:
 
 (to all programmers who read the code, my apologies I know that the code is a bit messy and I have to admit that, I repeat on one or two occasions, just remember that it was my first project and I was learning to program thanks, wait for my next projects to judge me 😉. Thanks
 
-I deployed the game hire => https://www.juegosmeza.com/
+I deployed the game hire => https://myboardgame.netlify.app/
